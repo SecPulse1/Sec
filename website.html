@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;">
+     <meta http-equiv="X-Content-Type-Options" content="nosniff">
+     <meta http-equiv="X-Frame-Options" content="DENY">
+     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+     <meta name="referrer" content="strict-origin-when-cross-origin">
+     <meta http-equiv="Cache-Control" content="no-store">
+     <meta name="robots" content="index,follow">
+     <meta name="permissions-policy" content="geolocation=(), microphone=(), camera=(), payment=(), usb=()">
+     <meta http-equiv="Strict-Transport-Security" content="max-age=63072000; includeSubDomains; preload">
+     <!-- منع فهرسة ملفات حساسة (لو أضفت robots.txt) -->
+     <!-- <meta name="robots" content="noindex,nofollow"> -->
+     <!-- Google Fonts for Modern Look -->
+    <title>SecPulse - Cybersecurity News & Analysis Hub</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Fonts for Modern Look -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00e0ff;
+            --secondary: #0057ff;
+            --accent: #ff4f81;                                                                                                                                                                                                                                                                                                                                                                       
+            --bg: #10131a;
+            --bg-card: #181c25;
+            --bg-hover: #23283a;
+            --text: #f4f6fa;
+            --text-muted: #b3b8c5;
+            --border: #23283a;
+            --success: #00ffb8;
+            --danger: #ff4f81;
+            --shadow: 0 4px 32px 0 rgba(0,0,0,0.18);
+        }
+        html, body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            background: linear-gradient(90deg, var(--bg-card) 60%, var(--secondary) 100%);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+        .logo-icon {
+            width: 38px;
+            height: 38px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 2px 10px 0 rgba(0,224,255,0.18);
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            margin: 0;
+            padding: 0;
+        }
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 0.5rem 1.2rem;
+            border-radius: 22px;
+            transition: all 0.2s;
+            position: relative;
+        }
+        nav a.active, nav a:hover {
+            color: var(--primary);
+            background: rgba(0,224,255,0.10);
+            box-shadow: 0 2px 10px 0 rgba(0,224,255,0.08);
+        }
+        .mobile-menu {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 2rem;
+            cursor: pointer;
+            margin-left: 1rem;
+        }
+        @media (max-width: 900px) {
+    nav ul {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: var(--bg-card);
+        flex-direction: column;
+        gap: 0;
+        display: none;
+        box-shadow: var(--shadow);
+        z-index: 9999;
+        padding-top: 90px; /* يترك مساحة للهيدر */
+        margin: 0;
+        border-top: none;
+        animation: slideDown 0.3s;
+    }
+    nav ul.active { display: flex; }
+    nav ul li {
+        width: 100%;
+        border-bottom: 1px solid var(--border);
+    }
+    nav ul li:last-child {
+        border-bottom: none;
+    }
+    nav a {
+        display: block;
+        width: 100%;
+        padding: 1.2rem 2rem;
+        font-size: 1.2rem;
+        text-align: left;
+        border-radius: 0;
+    }
+    .mobile-menu { display: block; }
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+        main {
+            flex: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2.5rem 2rem 1rem 2rem;
+        }
+        .page { display: none; }
+        .page.active { display: block; }
+        .hero {
+            background: linear-gradient(120deg, var(--bg-card) 60%, var(--primary) 120%);
+            border-radius: 18px;
+            padding: 3rem 2rem 2.5rem 2rem;
+            margin-bottom: 2.5rem;
+            box-shadow: var(--shadow);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.25rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .card {
+            background: var(--bg-card);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+        .download-section {
+            text-align: center;
+            margin: 2.5rem 0;
+            padding: 2rem;
+            background: linear-gradient(120deg, var(--bg-card) 60%, var(--primary) 120%);
+            border-radius: 18px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+        .download-btn {
+            margin-top: 1rem;
+            background: linear-gradient(90deg, var(--accent), #ff8c5a);
+            color: #fff;
+            border: none;
+            padding: 1rem 2.2rem;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.2s;
+            cursor: pointer;
+            box-shadow: 0 2px 10px 0 rgba(255,79,129,0.10);
+        }
+        .download-btn:hover {
+            background: linear-gradient(90deg, #ff8c5a, var(--accent));
+            transform: translateY(-2px) scale(1.04);
+        }
+        /* News */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .news-card {
+            background: var(--bg-card);
+            border-radius: 15px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+            min-height: 320px;
+        }
+        .news-card:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 8px 32px 0 rgba(0,224,255,0.13);
+            border-color: var(--primary);
+        }
+        .news-header {
+            background: linear-gradient(90deg, var(--bg-hover) 60%, var(--primary) 120%);
+            padding: 1.2rem 1.5rem 1rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .news-date {
+            color: var(--primary);
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .news-date::before { content: '📅'; }
+        .news-title {
+            font-size: 1.18rem;
+            margin-bottom: 0.7rem;
+            color: var(--text);
+            font-weight: 700;
+        }
+        .news-category {
+            display: inline-block;
+            padding: 0.25rem 0.9rem;
+            background: var(--accent);
+            color: #fff;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .news-content {
+            padding: 1.2rem 1.5rem 1.5rem 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .news-summary {
+            color: var(--text-muted);
+            margin-bottom: 1.2rem;
+            line-height: 1.6;
+        }
+        .read-more {
+            align-self: flex-start;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 700;
+            padding: 0.5rem 1.1rem;
+            border: 2px solid var(--primary);
+            border-radius: 25px;
+            transition: all 0.2s;
+            background: none;
+        }
+        .read-more:hover {
+            background: var(--primary);
+            color: var(--bg);
+            transform: translateX(4px);
+        }
+        /* Tools */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .tool-card {
+            background: var(--bg-card);
+            border-radius: 15px;
+            padding: 2rem 1.5rem 1.5rem 1.5rem;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+            min-height: 220px;
+        }
+        .tool-card:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 8px 32px 0 rgba(0,255,184,0.13);
+            border-color: var(--success);
+        }
+        .tool-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--success), var(--primary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.7rem;
+            color: #181c25;
+            box-shadow: 0 2px 10px 0 rgba(0,255,184,0.10);
+        }
+        .tool-title {
+            font-size: 1.15rem;
+            margin-bottom: 0.7rem;
+            color: var(--success);
+            font-weight: 700;
+        }
+        .tool-description {
+            color: var(--text-muted);
+            margin-bottom: 1.2rem;
+            line-height: 1.5;
+            flex: 1;
+        }
+        .tool-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 700;
+            padding: 0.5rem 1.1rem;
+            border: 2px solid var(--primary);
+            border-radius: 25px;
+            transition: all 0.2s;
+            background: none;
+            align-self: flex-start;
+        }
+        .tool-link:hover {
+            background: var(--primary);
+            color: var(--bg);
+            transform: scale(1.05);
+        }
+        /* Modern About Me Card */
+        .about-card {
+            max-width: 420px;
+            margin: 3rem auto 2rem auto;
+            background: linear-gradient(120deg, var(--bg-card) 70%, var(--primary) 180%);
+            border-radius: 22px;
+            box-shadow: 0 8px 32px 0 rgba(0,224,255,0.10);
+            padding: 2.5rem 2rem 2rem 2rem;
+            text-align: center;
+            border: 1.5px solid var(--primary);
+            animation: fadeInAbout 0.8s;
+        }
+        @keyframes fadeInAbout {
+            from { opacity: 0; transform: translateY(40px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        .about-avatar {
+            width: 96px;
+            height: 96px;
+            margin: 0 auto 1.2rem auto;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--primary);
+            box-shadow: 0 2px 16px 0 rgba(0,224,255,0.13);
+            background: #fff;
+        }
+        .about-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .about-card h1 {
+            margin: 0.5rem 0 0.2rem 0;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: 1px;
+        }
+        .about-role {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 1.2rem;
+            font-weight: 600;
+        }
+        .about-bio {
+            color: var(--text);
+            font-size: 1.08rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+        .about-highlight {
+            display: inline-block;
+            margin-top: 0.7rem;
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 1rem;
+        }
+        .about-social {
+            margin-bottom: 1.5rem;
+        }
+        .about-social a {
+            display: inline-block;
+            margin: 0 0.4rem;
+            font-size: 1.5rem;
+            color: var(--primary);
+            background: var(--bg-hover);
+            border-radius: 50%;
+            width: 38px;
+            height: 38px;
+            line-height: 38px;
+            text-align: center;
+            transition: background 0.2s, color 0.2s, transform 0.2s;
+        }
+        .about-social a:hover {
+            background: var(--primary);
+            color: var(--bg-card);
+            transform: scale(1.13);
+        }
+        .about-btn {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: #fff;
+            padding: 0.7rem 2.2rem;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+            box-shadow: 0 2px 10px 0 rgba(0,224,255,0.10);
+        }
+        .about-btn:hover {
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+            transform: translateY(-2px) scale(1.04);
+        }
+        /* Contact */
+        .contact-form {
+            box-sizing: border-box;
+            width: 100%;
+            max-width: 500px;
+            margin: 2rem auto 0 auto;
+            background: var(--bg-card);
+            padding: 2.5rem 1rem; /* قلل الفراغ الجانبي هنا */
+            border-radius: 18px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            font-weight: 700;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
+            padding: 0.8rem 1rem;
+            background: var(--bg-hover);
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            color: var(--text);
+            font-size: 1rem;
+            transition: all 0.2s;
+            margin: 0;
+        }
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 10px rgba(0,224,255,0.13);
+        }
+        .form-group textarea { height: 100px; resize: vertical; }
+        .submit-btn {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: #fff;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            width: 100%;
+        }
+        .submit-btn:hover { transform: translateY(-2px); }
+        /* Footer */
+        footer {
+            background: linear-gradient(90deg, var(--bg-card) 60%, var(--secondary) 100%);
+            border-top: 2px solid var(--primary);
+            padding: 2.5rem 2rem 1rem 2rem;
+            margin-top: 3rem;
+            color: var(--text-muted);
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: space-between;
+        }
+        .footer-section h3 { color: var(--primary); margin-bottom: 1rem; }
+        .footer-section a { color: var(--text-muted); text-decoration: none; }
+        .footer-section a:hover { color: var(--primary); }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+        }
+        /* Security Badge */
+        .security-badge {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--success);
+            color: var(--bg-card);
+            padding: 0.6rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            z-index: 1000;
+            box-shadow: 0 2px 10px 0 rgba(14, 129, 49, 0.1);
+        }
+        .security-badge::before { content: '🔒'; }
+        /* Responsive */
+        @media (max-width: 600px) {
+            .news-grid, .tools-grid { grid-template-columns: 1fr; }
+            .footer-content { flex-direction: column; gap: 1.5rem; }
+            main { padding: 1rem; }
+        }
+        .logo img {
+            margin-top: 4px;
+    /* أو استخدم transform: translateY(4px); */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo" data-page="home">
+                <img src="https://www.svgrepo.com/show/492990/pc-security.svg" alt="Logo" style="width:38px;height:38px;border-radius:8px;vertical-align:middle; margin-top:4px;">
+                <span style="margin-left: 10px;">SecPulse</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#" data-page="home" class="active">Home</a></li>
+                    <li><a href="#" data-page="news">News</a></li>
+                    <li><a href="#" data-page="tools">Tools</a></li>
+                    <li><a href="#" data-page="about">About Me</a></li>
+                    <li><a href="#" data-page="contact">Contact</a></li>
+                </ul>
+                <button class="mobile-menu" aria-label="Toggle mobile menu">☰</button>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <!-- Home Page -->
+        <div id="home" class="page active">
+            <section class="hero">
+                <div class="hero-content">
+                    <h1>SecPulse</h1>
+                    <p>Your trusted source for cybersecurity news, analysis, and resources. Stay ahead of emerging threats and protect what matters most in our interconnected digital world.</p>
+                </div>
+            </section>
+            <div class="card">
+                <h2>Why Cybersecurity Awareness Matters</h2>
+                <p>In today's digital landscape, cyber threats evolve at an unprecedented pace. From sophisticated ransomware attacks targeting critical infrastructure to data breaches affecting millions of users, the cybersecurity threat landscape continues to expand. SecPulse provides real-time intelligence, expert analysis, and actionable insights to help organizations and individuals stay protected.</p>
+                <br>
+                <p>Our mission is to democratize cybersecurity knowledge, making complex security concepts accessible to everyone. Whether you're a security professional, IT administrator, or simply someone who wants to stay informed about digital threats, SecPulse delivers the intelligence you need to make informed security decisions.</p>
+            </div>
+            <div class="download-section">
+                <h3>Latest Security Report</h3>
+                <p>Download our comprehensive Q2 2025 Cybersecurity Threat Landscape Report</p>
+                <button class="download-btn" onclick="checkCyberState()">
+                  ✅ Check The State of Cyber Threats Today
+                </button>
+            </div>
+        </div>
+        <!-- News Page -->
+        <div id="news" class="page">
+            <h1>Latest Cybersecurity News</h1>
+            <p>Stay informed about the latest security incidents, vulnerabilities, and threat intelligence from around the globe.</p>
+            <div class="news-grid" id="newsGrid">
+                <article class="news-card"><div class="news-header"><div class="news-date">June 15, 2025</div><h3 class="news-title">Major Healthcare Data Breach Affects 2.8 Million Patients</h3><span class="news-category">Data Breach</span></div><div class="news-content"><p class="news-summary">A sophisticated cyber attack compromised health records of 2.8 million patients via a third-party vendor.</p><a href="#" class="read-more" onclick="openNewsDetail('healthcare-breach-2025')">Read More</a></div></article>
+                <article class="news-card"><div class="news-header"><div class="news-date">June 14, 2025</div><h3 class="news-title">Critical Zero-Day Vulnerability in VPN Software</h3><span class="news-category">Vulnerability</span></div><div class="news-content"><p class="news-summary">A zero-day in a popular VPN solution allows remote code execution and is being actively exploited.</p><a href="#" class="read-more" onclick="openNewsDetail('vpn-zero-day-2025')">Read More</a></div></article>
+                <article class="news-card"><div class="news-header"><div class="news-date">June 13, 2025</div><h3 class="news-title">Ransomware Hits Major Logistics Company</h3><span class="news-category">Ransomware</span></div><div class="news-content"><p class="news-summary">A global logistics firm faces operational shutdown after a targeted ransomware attack encrypted core systems.</p><a href="#" class="read-more" onclick="openNewsDetail('logistics-ransomware-2025')">Read More</a></div></article>
+                <article class="news-card"><div class="news-header"><div class="news-date">June 12, 2025</div><h3 class="news-title">Banking Trojan Infects 100,000 Devices</h3><span class="news-category">Malware</span></div><div class="news-content"><p class="news-summary">The "BankBot" trojan evolves with anti-analysis features, targeting mobile banking apps worldwide.</p><a href="#" class="read-more" onclick="openNewsDetail('bankbot-2025')">Read More</a></div></article>
+                <article class="news-card"><div class="news-header"><div class="news-date">June 11, 2025</div><h3 class="news-title">IoT Botnet Grows to 2.5 Million Devices</h3><span class="news-category">IoT Security</span></div><div class="news-content"><p class="news-summary">"ThingNet" botnet now controls 2.5 million smart devices, used for DDoS and crypto mining.</p><a href="#" class="read-more" onclick="openNewsDetail('iot-botnet-2025')">Read More</a></div></article>
+                <article class="news-card"><div class="news-header"><div class="news-date">June 10, 2025</div><h3 class="news-title">Cloud Misconfiguration Exposes 5M Users</h3><span class="news-category">Cloud Security</span></div><div class="news-content"><p class="news-summary">A misconfigured storage bucket exposed personal data of 5 million users for three weeks.</p><a href="#" class="read-more" onclick="openNewsDetail('cloud-leak-2025')">Read More</a></div></article>
+                <article class="news-card"><div class="news-header"><div class="news-date">June 9, 2025</div><h3 class="news-title">Supply Chain Attack on Software Vendor</h3><span class="news-category">Supply Chain</span></div><div class="news-content"><p class="news-summary">Attackers compromised a software update, impacting thousands of enterprise customers.</p><a href="#" class="read-more" onclick="openNewsDetail('supply-chain-2025')">Read More</a></div></article>
+                <article class="news-card"><div class="news-header"><div class="news-date">June 8, 2025</div><h3 class="news-title">Phishing Campaign Targets Remote Workers</h3><span class="news-category">Phishing</span></div><div class="news-content"><p class="news-summary">A new phishing wave uses fake VPN login pages to steal credentials from remote employees.</p><a href="#" class="read-more" onclick="openNewsDetail('phishing-remote-2025')">Read More</a></div></article>
+                <article class="news-card"><div class="news-header"><div class="news-date">June 7, 2025</div><h3 class="news-title">Nation-State APT Targets Energy Sector</h3><span class="news-category">APT</span></div><div class="news-content"><p class="news-summary">An advanced persistent threat group launched attacks on energy infrastructure in Europe.</p><a href="#" class="read-more" onclick="openNewsDetail('apt-energy-2025')">Read More</a></div></article>
+                <article class="news-card"><div class="news-header"><div class="news-date">June 6, 2025</div><h3 class="news-title">Zero Trust Adoption Accelerates</h3><span class="news-category">Trends</span></div><div class="news-content"><p class="news-summary">Organizations worldwide are rapidly adopting Zero Trust models to combat modern threats.</p><a href="#" class="read-more" onclick="openNewsDetail('zero-trust-2025')">Read More</a></div></article>
+                <article class="news-card"><div class="news-header"><div class="news-date">June 5, 2025</div><h3 class="news-title">Critical Patch Released for Web Servers</h3><span class="news-category">Patch</span></div><div class="news-content"><p class="news-summary">Vendors urge immediate patching of a critical vulnerability in popular web server software.</p><a href="#" class="read-more" onclick="openNewsDetail('webserver-patch-2025')">Read More</a></div></article>
+                <article class="news-card"><div class="news-header"><div class="news-date">June 4, 2025</div><h3 class="news-title">Insider Threats on the Rise</h3><span class="news-category">Insider Threat</span></div><div class="news-content"><p class="news-summary">Reports show a 30% increase in insider-related security incidents in the last year.</p><a href="#" class="read-more" onclick="openNewsDetail('insider-threat-2025')">Read More</a></div></article>
+                <article class="news-card"><div class="news-header"><div class="news-date">June 3, 2025</div><h3 class="news-title">AI Used in Social Engineering Attacks</h3><span class="news-category">AI Security</span></div><div class="news-content"><p class="news-summary">Attackers leverage AI to craft convincing phishing emails and deepfake audio scams.</p><a href="#" class="read-more" onclick="openNewsDetail('ai-social-2025')">Read More</a></div></article>
+                <article class="news-card"><div class="news-header"><div class="news-date">June 2, 2025</div><h3 class="news-title">DDoS Attacks Hit Record High</h3><span class="news-category">DDoS</span></div><div class="news-content"><p class="news-summary">Global DDoS attack volume reached new highs, targeting financial and government sectors.</p><a href="#" class="read-more" onclick="openNewsDetail('ddos-2025')">Read More</a></div></article>
+                <article class="news-card"><div class="news-header"><div class="news-date">June 1, 2025</div><h3 class="news-title">Biometric Data Leak at Tech Firm</h3><span class="news-category">Privacy</span></div><div class="news-content"><p class="news-summary">A tech company exposed biometric data of employees due to insecure cloud storage.</p><a href="#" class="read-more" onclick="openNewsDetail('biometric-leak-2025')">Read More</a></div></article>
+                <article class="news-card"><div class="news-header"><div class="news-date">May 31, 2025</div><h3 class="news-title">New Android Spyware Discovered</h3><span class="news-category">Mobile Security</span></div><div class="news-content"><p class="news-summary">Researchers found a new Android spyware app that evades detection and steals SMS data.</p><a href="#" class="read-more" onclick="openNewsDetail('android-spyware-2025')">Read More</a></div></article>
+                <article class="news-card"><div class="news-header"><div class="news-date">May 30, 2025</div><h3 class="news-title">Massive Credential Stuffing Attack</h3><span class="news-category">Account Security</span></div><div class="news-content"><p class="news-summary">Millions of accounts targeted in a large-scale credential stuffing campaign this week.</p><a href="#" class="read-more" onclick="openNewsDetail('credential-stuffing-2025')">Read More</a></div></article>
+                <article class="news-card"><div class="news-header"><div class="news-date">May 29, 2025</div><h3 class="news-title">Critical Flaw in IoT Cameras</h3><span class="news-category">IoT Security</span></div><div class="news-content"><p class="news-summary">A vulnerability in popular IoT cameras allows attackers to access live video feeds remotely.</p><a href="#" class="read-more" onclick="openNewsDetail('iot-camera-flaw-2025')">Read More</a></div></article>
+                <article class="news-card"><div class="news-header"><div class="news-date">May 28, 2025</div><h3 class="news-title">Fake Antivirus Spreads via Email</h3><span class="news-category">Malware</span></div><div class="news-content"><p class="news-summary">A fake antivirus installer is spreading through phishing emails, infecting thousands of PCs.</p><a href="#" class="read-more" onclick="openNewsDetail('fake-antivirus-2025')">Read More</a></div></article>
+            </div>
+        </div>
+        <!-- Tools Page -->
+        <div id="tools" class="page">
+            <h1>Cybersecurity Tools & Resources</h1>
+            <p>Essential tools and resources for cybersecurity professionals, researchers, and enthusiasts.</p>
+            <div class="tools-grid">
+                <div class="tool-card"><div class="tool-icon">🔍</div><h3 class="tool-title">Shodan</h3><p class="tool-description">Search engine for Internet-connected devices and open ports.</p><a href="https://www.shodan.io" class="tool-link" target="_blank">Visit Shodan</a></div>
+                <div class="tool-card"><div class="tool-icon">💾</div><h3 class="tool-title">Have I Been Pwned</h3><p class="tool-description">Check if your email or phone was in a data breach.</p><a href="https://haveibeenpwned.com" class="tool-link" target="_blank">Check Breaches</a></div>
+                <div class="tool-card"><div class="tool-icon">🦠</div><h3 class="tool-title">VirusTotal</h3><p class="tool-description">Scan files and URLs with multiple antivirus engines.</p><a href="https://www.virustotal.com" class="tool-link" target="_blank">Scan Files</a></div>
+                <div class="tool-card"><div class="tool-icon">🛡️</div><h3 class="tool-title">OWASP</h3><p class="tool-description">Open Web Application Security Project resources.</p><a href="https://owasp.org" class="tool-link" target="_blank">Explore OWASP</a></div>
+                <div class="tool-card"><div class="tool-icon">🔧</div><h3 class="tool-title">Nmap</h3><p class="tool-description">Network discovery and security auditing tool.</p><a href="https://nmap.org" class="tool-link" target="_blank">Get Nmap</a></div>
+                <div class="tool-card"><div class="tool-icon">📊</div><h3 class="tool-title">Wireshark</h3><p class="tool-description">Network protocol analyzer for traffic inspection.</p><a href="https://www.wireshark.org" class="tool-link" target="_blank">Download Wireshark</a></div>
+                <div class="tool-card"><div class="tool-icon">🔐</div><h3 class="tool-title">Metasploit</h3><p class="tool-description">Penetration testing framework for finding vulnerabilities.</p><a href="https://www.metasploit.com" class="tool-link" target="_blank">Learn Metasploit</a></div>
+                <div class="tool-card"><div class="tool-icon">🔒</div><h3 class="tool-title">Burp Suite</h3><p class="tool-description">Web application security testing toolkit.</p><a href="https://portswigger.net/burp" class="tool-link" target="_blank">Get Burp Suite</a></div>
+                <div class="tool-card"><div class="tool-icon">🌐</div><h3 class="tool-title">SSL Labs</h3><p class="tool-description">Test SSL/TLS configuration of web servers.</p><a href="https://www.ssllabs.com/ssltest/" class="tool-link" target="_blank">Test SSL</a></div>
+                <div class="tool-card"><div class="tool-icon">📱</div><h3 class="tool-title">MobSF</h3><p class="tool-description">Mobile Security Framework for app analysis.</p><a href="https://github.com/MobSF/Mobile-Security-Framework-MobSF" class="tool-link" target="_blank">View MobSF</a></div>
+                <div class="tool-card"><div class="tool-icon">🔍</div><h3 class="tool-title">MITRE ATT&CK</h3><p class="tool-description">Knowledge base of adversary tactics and techniques.</p><a href="https://attack.mitre.org" class="tool-link" target="_blank">Explore ATT&CK</a></div>
+                <div class="tool-card"><div class="tool-icon">⚡</div><h3 class="tool-title">CyberChef</h3><p class="tool-description">Web tool for encoding, decoding, and analysis.</p><a href="https://gchq.github.io/CyberChef/" class="tool-link" target="_blank">Use CyberChef</a></div>
+                <div class="tool-card"><div class="tool-icon">🧰</div><h3 class="tool-title">Cuckoo Sandbox</h3><p class="tool-description">Automated malware analysis system.</p><a href="https://cuckoosandbox.org" class="tool-link" target="_blank">Try Cuckoo</a></div>
+                <div class="tool-card"><div class="tool-icon">🗂️</div><h3 class="tool-title">TheHive</h3><p class="tool-description">Open-source incident response platform.</p><a href="https://thehive-project.org" class="tool-link" target="_blank">Explore TheHive</a></div>
+                <div class="tool-card"><div class="tool-icon">🛠️</div><h3 class="tool-title">MISP</h3><p class="tool-description">Malware Information Sharing Platform & Threat Intelligence.</p><a href="https://www.misp-project.org" class="tool-link" target="_blank">View MISP</a></div>
+                <div class="tool-card"><div class="tool-icon">🦾</div><h3 class="tool-title">YARA</h3><p class="tool-description">Pattern matching tool for malware research.</p><a href="https://virustotal.github.io/yara/" class="tool-link" target="_blank">Learn YARA</a></div>
+                <div class="tool-card"><div class="tool-icon">🧪</div><h3 class="tool-title">Hybrid Analysis</h3><p class="tool-description">Free malware analysis service for files and URLs.</p><a href="https://www.hybrid-analysis.com" class="tool-link" target="_blank">Try Hybrid Analysis</a></div>
+                <div class="tool-card"><div class="tool-icon">🕵️‍♂️</div><h3 class="tool-title">Maltego</h3><p class="tool-description">Link analysis and data mining tool for investigations.</p><a href="https://www.maltego.com" class="tool-link" target="_blank">Explore Maltego</a></div>
+                <div class="tool-card"><div class="tool-icon">🔗</div><h3 class="tool-title">SpiderFoot</h3><p class="tool-description">Automated OSINT tool for threat intelligence.</p><a href="https://www.spiderfoot.net" class="tool-link" target="_blank">Try SpiderFoot</a></div>
+                <div class="tool-card"><div class="tool-icon">🧬</div><h3 class="tool-title">Cortex</h3><p class="tool-description">Observable analysis and response automation.</p><a href="https://www.cortex-platform.org" class="tool-link" target="_blank">View Cortex</a></div>
+                <div class="tool-card"><div class="tool-icon">🛡️</div><h3 class="tool-title">Snort</h3><p class="tool-description">Network intrusion detection and prevention system.</p><a href="https://www.snort.org" class="tool-link" target="_blank">Get Snort</a></div>
+            </div>
+        </div>
+        <!-- About Me Page -->
+        <div id="about" class="page">
+            <div class="about-card">
+                <div class="about-avatar">
+                    <img src="https://avatars.githubusercontent.com/u/9919?s=200&v=4" alt="Avatar" />
+                </div>
+                <h1>Boudali Fateh</h1>
+                <h3 class="about-role">Cybersecurity Enthusiast & Web Developer</h3>
+                <p class="about-bio">
+                    Passionate about website security, penetration testing, and malware analysis.<br>
+                    I help secure websites by identifying and mitigating vulnerabilities through ethical hacking and consulting.<br>
+                    <span class="about-highlight">Cisco | Coursera | PortSwigger</span>
+                </p>
+            <div class="about-social">
+            <!-- Discord (أيقونة فقط) -->
+                <a href="#" title="Discord" target="_blank">
+                    <img src="https://www.svgrepo.com/show/353655/discord-icon.svg" alt="Discord" style="width:26px;height:26px;vertical-align:middle;">
+                </a>
+            <!-- Telegram -->
+                <a href="https://t.me/SECPULSE" title="Telegram" target="_blank">
+                    <img src="https://www.svgrepo.com/show/452115/telegram.svg" alt="Telegram" style="width:26px;height:26px;vertical-align:middle;">
+    </a>
+            <!-- Instagram -->
+                <a href="https://www.instagram.com/_bdl._.fateh_/" title="Instagram" target="_blank">
+                    <img src="https://www.svgrepo.com/show/452229/instagram-1.svg" alt="Instagram" style="width:26px;height:26px;vertical-align:middle;">
+    </a>
+            <!-- Facebook -->
+                <a href="https://www.facebook.com/bwdaly.fath" title="Facebook" target="_blank">
+                    <img src="https://www.svgrepo.com/show/452196/facebook-1.svg" alt="Facebook" style="width:26px;height:26px;vertical-align:middle;">
+                </a>
+            </div>
+            <!-- ...existing code... -->
+            <div class="about-contact">
+                <a href="#" data-page="contact" class="about-btn">Contact Me</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Page -->
+    <div id="contact" class="page">
+            <h1>Contact SecPulse</h1>
+            <p>Get in touch with our cybersecurity experts. We're here to help with your security questions and concerns.</p>
+            <form action="https://formsubmit.co/757dc3a9674de57ca81c56acd20e09e6" method="POST">
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" name="name" required maxlength="100">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required maxlength="255">
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" maxlength="200">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message *</label>
+                    <textarea id="message" name="message" required maxlength="1000"></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About SecPulse</h3>
+                <p>SecPulse is dedicated to providing timely, accurate cybersecurity intelligence and analysis. Our mission is to help organizations and individuals stay protected against evolving cyber threats.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <p><a href="#" data-page="home">Home</a></p>
+                <p><a href="#" data-page="news">Latest News</a></p>
+                <p><a href="#" data-page="tools">Security Tools</a></p>
+                <p><a href="#" data-page="contact">Contact Us</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 SecPulse. All rights reserved.</p>
+        </div>
+    </footer>
+    <div class="security-badge">
+        Secure Connection
+    </div>
+    <!-- ... باقي الصفحة ... -->
+    <!-- ضع كل الجافاسكريبت هنا -->
+    <script>
+        // حماية عامة
+        document.addEventListener('dragover', e => e.preventDefault());
+        document.addEventListener('drop', e => e.preventDefault());
+        document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I')) e.preventDefault();
+        });
+        window.eval = function() { throw new Error("eval is disabled for security reasons."); };
+        window.Function = function() { throw new Error("Function constructor is disabled for security reasons."); };
+
+        // تعقيم المدخلات
+        function sanitizeInput(input) {
+            return input.replace(/[<>]/g, '');
+        }
+
+        // نظام التنقل
+        const Navigation = {
+            currentPage: 'home',
+            init: function() {
+                this.bindEvents();
+                this.setActivePage('home');
+            },
+            bindEvents: function() {
+                document.addEventListener('click', (e) => {
+                    if (e.target.hasAttribute('data-page')) {
+                        e.preventDefault();
+                        const page = e.target.getAttribute('data-page');
+                        this.setActivePage(page);
+                        const navUl = document.querySelector('nav ul');
+                        if(navUl) navUl.classList.remove('active');
+                    }
+                });
+                const mobileMenu = document.querySelector('.mobile-menu');
+                const navUl = document.querySelector('nav ul');
+                if (mobileMenu && navUl) {
+                    mobileMenu.addEventListener('click', () => {
+                        navUl.classList.toggle('active');
+                    });
+                }
+            },
+            setActivePage: function(pageName) {
+                document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+                const targetPage = document.getElementById(pageName);
+                if (targetPage) targetPage.classList.add('active');
+                document.querySelectorAll('nav a[data-page]').forEach(link => {
+                    link.classList.toggle('active', link.getAttribute('data-page') === pageName);
+                });
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        };
+
+        // تفاصيل الأخبار
+        function openNewsDetail(articleId) {
+            alert(`Opening detailed view for article: ${articleId}`);
+        }
+
+        // تحميل التقرير
+        // استبدل دالة downloadReport بهذا
+        function checkCyberState() {
+             window.open('https://thehackernews.com/', '_blank');
+}
+
+        // حماية النموذج
+        document.addEventListener('DOMContentLoaded', function() {
+            Navigation.init();
+
+            // منع لصق نصوص في البريد الإلكتروني
+            const email = document.getElementById('email');
+            if(email) {
+                email.addEventListener('paste', e => e.preventDefault());
+            }
+
+            // rel للحماية للروابط الخارجية
+            document.querySelectorAll('a[target="_blank"]').forEach(link => {
+                link.setAttribute('rel', 'noopener noreferrer');
+            });
+        });
+    </script>
+</body>
+</html>
