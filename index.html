@@ -11,7 +11,7 @@
      <meta name="robots" content="index,follow">
      <meta name="permissions-policy" content="geolocation=(), microphone=(), camera=(), payment=(), usb=()">
      <meta http-equiv="Strict-Transport-Security" content="max-age=63072000; includeSubDomains; preload">
-     <!-- منع فهرسة ملفات حساسة (لو أضفت robots.txt) -->
+     <!-- منع فهرسة ملفات حساسة ( robots.txt) -->
      <!-- <meta name="robots" content="noindex,nofollow"> -->
      <!-- Google Fonts for Modern Look -->
     <title>SecPulse - Cybersecurity News & Analysis Hub</title>
@@ -126,7 +126,7 @@
         display: none;
         box-shadow: var(--shadow);
         z-index: 9999;
-        padding-top: 90px; /* يترك مساحة للهيدر */
+        padding-top: 90px; 
         margin: 0;
         border-top: none;
         animation: slideDown 0.3s;
@@ -468,7 +468,7 @@
             max-width: 500px;
             margin: 2rem auto 0 auto;
             background: var(--bg-card);
-            padding: 2.5rem 1rem; /* قلل الفراغ الجانبي هنا */
+            padding: 2.5rem 1rem; 
             border-radius: 18px;
             border: 1px solid var(--border);
             box-shadow: var(--shadow);
@@ -563,7 +563,7 @@
         }
         .logo img {
             margin-top: 4px;
-    /* أو استخدم transform: translateY(4px); */
+    
         }
     </style>
 </head>
@@ -677,24 +677,24 @@
                     <span class="about-highlight">Cisco | Coursera | PortSwigger</span>
                 </p>
             <div class="about-social">
-            <!-- Discord (أيقونة فقط) -->
+            
                 <a href="#" title="Discord" target="_blank">
                     <img src="https://www.svgrepo.com/show/353655/discord-icon.svg" alt="Discord" style="width:26px;height:26px;vertical-align:middle;">
                 </a>
-            <!-- Telegram -->
+           
                 <a href="https://t.me/SECPULSE" title="Telegram" target="_blank">
                     <img src="https://www.svgrepo.com/show/452115/telegram.svg" alt="Telegram" style="width:26px;height:26px;vertical-align:middle;">
     </a>
-            <!-- Instagram -->
+            
                 <a href="https://www.instagram.com/_bdl._.fateh_/" title="Instagram" target="_blank">
                     <img src="https://www.svgrepo.com/show/452229/instagram-1.svg" alt="Instagram" style="width:26px;height:26px;vertical-align:middle;">
     </a>
-            <!-- Facebook -->
+            
                 <a href="https://www.facebook.com/bwdaly.fath" title="Facebook" target="_blank">
                     <img src="https://www.svgrepo.com/show/452196/facebook-1.svg" alt="Facebook" style="width:26px;height:26px;vertical-align:middle;">
                 </a>
             </div>
-            <!-- ...existing code... -->
+            
             <div class="about-contact">
                 <a href="#" data-page="contact" class="about-btn">Contact Me</a>
             </div>
@@ -747,10 +747,9 @@
     <div class="security-badge">
         Secure Connection
     </div>
-    <!-- ... باقي الصفحة ... -->
-    <!-- ضع كل الجافاسكريبت هنا -->
+    
     <script>
-        // حماية عامة
+        
         document.addEventListener('dragover', e => e.preventDefault());
         document.addEventListener('drop', e => e.preventDefault());
         document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
@@ -760,12 +759,12 @@
         window.eval = function() { throw new Error("eval is disabled for security reasons."); };
         window.Function = function() { throw new Error("Function constructor is disabled for security reasons."); };
 
-        // تعقيم المدخلات
+        
         function sanitizeInput(input) {
             return input.replace(/[<>]/g, '');
         }
 
-        // نظام التنقل
+      
         const Navigation = {
             currentPage: 'home',
             init: function() {
@@ -801,28 +800,27 @@
             }
         };
 
-        // تفاصيل الأخبار
+        
         function openNewsDetail(articleId) {
             alert(`Opening detailed view for article: ${articleId}`);
         }
 
-        // تحميل التقرير
-        // استبدل دالة downloadReport بهذا
+      
         function checkCyberState() {
              window.open('https://thehackernews.com/', '_blank');
 }
 
-        // حماية النموذج
+       
         document.addEventListener('DOMContentLoaded', function() {
             Navigation.init();
 
-            // منع لصق نصوص في البريد الإلكتروني
+            
             const email = document.getElementById('email');
             if(email) {
                 email.addEventListener('paste', e => e.preventDefault());
             }
 
-            // rel للحماية للروابط الخارجية
+            
             document.querySelectorAll('a[target="_blank"]').forEach(link => {
                 link.setAttribute('rel', 'noopener noreferrer');
             });
