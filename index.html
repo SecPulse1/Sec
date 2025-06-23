@@ -114,46 +114,48 @@
             margin-left: 1rem;
         }
         @media (max-width: 900px) {
-    nav ul {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: var(--bg-card);
-        flex-direction: column;
-        gap: 0;
-        display: none;
-        box-shadow: var(--shadow);
-        z-index: 9999;
-        padding-top: 90px; 
-        margin: 0;
-        border-top: none;
-        animation: slideDown 0.3s;
-    }
-    nav ul.active { display: flex; }
-    nav ul li {
-        width: 100%;
-        border-bottom: 1px solid var(--border);
-    }
-    nav ul li:last-child {
-        border-bottom: none;
-    }
-    nav a {
-        display: block;
-        width: 100%;
-        padding: 1.2rem 2rem;
-        font-size: 1.2rem;
-        text-align: left;
-        border-radius: 0;
-    }
-    .mobile-menu { display: block; }
-}
-
-@keyframes slideDown {
-    from { transform: translateY(-30px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-}
+        nav ul {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 80vw;
+            max-width: 340px;
+            height: 100vh;
+            background: var(--bg-card);
+            flex-direction: column;
+            gap: 0;
+            display: none;
+            box-shadow: -4px 0 32px 0 rgba(0,0,0,0.18);
+            z-index: 9999;
+            padding-top: 90px;
+            margin: 0;
+            border-top-left-radius: 18px;
+            border-bottom-left-radius: 18px;
+            animation: slideInMenu 0.3s;
+            left: auto;
+        }
+        nav ul.active { display: flex; }
+        nav ul li {
+            width: 100%;
+            border-bottom: 1px solid var(--border);
+        }
+        nav ul li:last-child {
+            border-bottom: none;
+        }
+        nav a {
+            display: block;
+            width: 100%;
+            padding: 1.2rem 2rem;
+            font-size: 1.2rem;
+            text-align: left;
+            border-radius: 0;
+        }
+        .mobile-menu { display: block; }
+        }
+        @keyframes slideInMenu {
+        from { transform: translateX(60px); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+        }
         main {
             flex: 1;
             max-width: 1200px;
@@ -367,6 +369,137 @@
             color: var(--bg);
             transform: scale(1.05);
         }
+        /* Learn Page */
+        .tool-card {
+            background: linear-gradient(120deg, var(--bg-card) 70%, var(--primary) 180%);
+            border-radius: 18px;
+            padding: 2.2rem 1.5rem 1.5rem 1.5rem;
+            border: 1.5px solid var(--primary);
+            box-shadow: 0 8px 32px 0 rgba(0,224,255,0.10);
+            transition: transform 0.22s, box-shadow 0.22s, border-color 0.22s;
+            display: flex;
+            flex-direction: column;
+            min-height: 240px;
+            position: relative;
+            overflow: hidden;
+        }
+        .tool-card:hover {
+            transform: translateY(-7px) scale(1.04);
+            box-shadow: 0 12px 36px 0 rgba(0,224,255,0.18);
+            border-color: var(--accent);
+            background: linear-gradient(120deg, var(--bg-hover) 60%, var(--accent) 180%);
+        }
+        .tool-icon {
+            width: 54px;
+            height: 54px;
+            background: linear-gradient(135deg, var(--success), var(--primary));
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.1rem;
+            font-size: 2.1rem;
+            color: #181c25;
+            box-shadow: 0 2px 10px 0 rgba(0,255,184,0.13);
+            border: 2px solid var(--bg-hover);
+        }
+        .tool-title {
+            font-size: 1.18rem;
+            margin-bottom: 0.6rem;
+            color: var(--primary);
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .news-category {
+            margin-left: 0.5rem;
+            background: var(--accent);
+            color: #fff;
+            border-radius: 12px;
+            padding: 0.18rem 0.7rem;
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .tool-description {
+            color: var(--text-muted);
+            margin-bottom: 1.2rem;
+            line-height: 1.6;
+            flex: 1;
+            font-size: 1.01rem;
+        }
+        .tool-link {
+            color: #fff;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            text-decoration: none;
+            font-weight: 700;
+            padding: 0.6rem 1.3rem;
+            border-radius: 25px;
+            border: none;
+            transition: all 0.18s;
+            align-self: flex-start;
+            box-shadow: 0 2px 10px 0 rgba(0,224,255,0.10);
+            font-size: 1rem;
+        }
+        .tool-link:hover {
+            background: linear-gradient(90deg, var(--accent), var(--primary));
+            color: var(--bg);
+            transform: scale(1.07);
+        }
+        .resource-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            margin-top: 1.2rem;
+        }
+        .resource-badge {
+            display: inline-block;
+            padding: 0.45rem 1.2rem;
+            border-radius: 22px;
+            background: linear-gradient(90deg, #00e0ff 60%, #ff4f81 100%);
+            color: #fff !important;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            box-shadow: 0 2px 10px 0 rgba(0,224,255,0.10);
+            transition: transform 0.18s, box-shadow 0.18s;
+            border: none;
+            margin-bottom: 0;
+        }
+        .resource-badge:hover {
+            transform: scale(1.07);
+            box-shadow: 0 4px 18px 0 rgba(0,224,255,0.18);
+            color: #181c25 !important;
+        }
+        /* إصلاح تداخل الروابط داخل roadmap */
+        #roadmap .roadmap-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7em;
+            margin-top: 0.7em;
+        }
+        #roadmap .roadmap-badge {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            color: #fff !important;
+            font-weight: 700;
+            font-size: 1rem;
+            border-radius: 22px;
+            padding: 0.45rem 1.2rem;
+            text-decoration: none;
+            margin-bottom: 0.2em;
+            box-shadow: 0 2px 10px 0 rgba(0,224,255,0.10);
+            transition: transform 0.18s, box-shadow 0.18s;
+            border: none;
+        }
+        #roadmap .roadmap-badge:hover {
+            background: linear-gradient(90deg, var(--accent), var(--primary));
+            color: #181c25 !important;
+            transform: scale(1.07);
+            box-shadow: 0 4px 18px 0 rgba(0,224,255,0.18);
+        }
         /* Modern About Me Card */
         .about-card {
             max-width: 420px;
@@ -450,7 +583,7 @@
             background: linear-gradient(90deg, var(--primary), var(--secondary));
             color: #fff;
             padding: 0.7rem 2.2rem;
-            border-radius: 25px;
+            border-radius: 10px;
             font-weight: 700;
             font-size: 1.1rem;
             text-decoration: none;
@@ -565,13 +698,266 @@
             margin-top: 4px;
     
         }
+        .hero-title {
+            font-size: 2.7rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #e6f6fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.7rem;
+            /* متغيرات الظل */
+            --shadow-x: 0px;
+            --shadow-y: 8px;
+            --shadow-color: var(--primary);
+            text-shadow:
+                var(--shadow-x) var(--shadow-y) 18px var(--shadow-color),
+                0 1px 4px #000a;
+            animation: shadow-rotate 2.5s linear infinite;
+        }
+        @keyframes shadow-rotate {
+            0% {
+                --shadow-x: 0px;
+                --shadow-y: 8px;
+                --shadow-color: var(--primary);
+            }
+            25% {
+                --shadow-x: 8px;
+                --shadow-y: 0px;
+                --shadow-color: var(--accent);
+            }
+            50% {
+                --shadow-x: 0px;
+                --shadow-y: -8px;
+                --shadow-color: var(--secondary);
+            }
+            75% {
+                --shadow-x: -8px;
+                --shadow-y: 0px;
+                --shadow-color: var(--success);
+            }
+            100% {
+                --shadow-x: 0px;
+                --shadow-y: 8px;
+                --shadow-color: var(--primary);
+            }
+        }
+    .gradient-text {
+            background: linear-gradient(90deg, #00c0e0, #6a7cff, #ff4f81 90%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;                color: #00c0e0;
+            filter: drop-shadow(0 0 2px var(--accent));
+        }
+        @media (max-width: 600px) {
+        .hero {
+            padding: 1.2rem 0.5rem 1.2rem 0.5rem;
+            border-radius: 10px;
+            }
+        .hero-title {
+            font-size: 2.7rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #e6f6fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.7rem;
+            /* متغيرات الظل */
+            --shadow-x: 0px;
+            --shadow-y: 8px;
+            --shadow-blur: 28px;
+            --shadow-color: var(--primary);
+            text-shadow:
+                var(--shadow-x) var(--shadow-y) var(--shadow-blur) var(--shadow-color),
+                0 1px 4px #000a;
+            animation: shadow-circle 3.5s linear infinite;
+        }
+
+        @keyframes shadow-circle {
+            0% {
+                --shadow-x: 0px;
+                --shadow-y: 14px;
+                --shadow-color: var(--primary);
+            }
+            20% {
+                --shadow-x: 13px;
+                --shadow-y: 9px;
+                --shadow-color: var(--accent);
+            }
+            40% {
+                --shadow-x: 14px;
+                --shadow-y: -9px;
+                --shadow-color: var(--secondary);
+            }
+            60% {
+                --shadow-x: 0px;
+                --shadow-y: -14px;
+                --shadow-color: var(--success);
+            }
+            80% {
+                --shadow-x: -13px;
+                --shadow-y: -9px;
+                --shadow-color: var(--primary);
+            }   
+            100% {
+                --shadow-x: 0px;
+                --shadow-y: 14px;
+                --shadow-color: var(--primary);
+            }
+        }
+        .hero p {
+            font-size: 1rem !important;
+            padding: 0 0.2rem;
+            }
+        .download-btn, .about-btn, .submit-btn {
+            font-size: 1rem !important;
+            padding: 0.8rem 1.2rem !important;
+            width: 40%;
+            box-sizing: border-box;
+            }
+        .card {
+            padding: 1.2rem 0.7rem;
+            margin-bottom: 1.2rem;
+            }
+        .tools-grid, .news-grid {
+            grid-template-columns: 1fr !important;
+            gap: 1.2rem !important;
+            margin-top: 1rem !important;
+            }
+        .tool-card, .news-card {
+            min-height: unset !important;
+            padding: 1.2rem 0.7rem 1rem 0.7rem !important;
+            }
+        .tool-title, .news-title {
+            font-size: 1rem !important;
+            }
+        .tool-description, .news-summary {
+            font-size: 0.97rem !important;
+            }
+        .about-card {
+            padding: 1.2rem 0.7rem 1rem 0.7rem;
+            max-width: 98vw;
+            }
+        .about-avatar {
+            width: 70px;
+            height: 70px;
+            }
+        .footer-content {
+            flex-direction: column !important;
+            gap: 1rem !important;
+            padding: 0 !important;
+            }
+        footer {
+            padding: 1.2rem 0.5rem 0.7rem 0.5rem !important;
+            margin-top: 1.2rem !important;
+            }
+        .security-badge {
+            right: 10px;
+            bottom: 10px;
+            font-size: 0.85rem;
+            padding: 0.4rem 0.8rem;
+            }
+        input, select, textarea {
+            font-size: 1rem !important;
+            }
+        }
+            @media (max-width: 600px) {
+        .logo img { width: 48px !important; height: 48px !important; }
+        }
+        a, a:visited, a:hover, a:active {
+            text-decoration: none !important;
+        }
+        @media (max-width: 900px) {
+        .mobile-menu {
+            display: block;
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            z-index: 10001;
+            background: var(--bg-card);
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            box-shadow: 0 2px 10px 0 rgba(0,224,255,0.10);
+            border: none;
+            color: var(--primary);
+            font-size: 2rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .mobile-menu:active,
+        .mobile-menu:focus {
+            background: var(--primary);
+            color: var(--bg-card);
+        }
+        @media (max-width: 900px) {
+        .mobile-menu {
+            display: block;
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            z-index: 10001;
+            background: none !important; /* بدون خلفية */
+            border: none;
+            color: var(--primary);
+            font-size: 2.3rem;
+            cursor: pointer;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            box-shadow: none;
+            transition: color 0.2s;
+        }
+        .mobile-menu.active {
+            color: var(--accent); /* لون مختلف عند الفتح */
+        }
+    }
+}     
+        #backToTop {
+            position: fixed;
+            bottom: 32px;
+            left: 32px;
+            z-index: 12000;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: #fff;
+            border: none;
+            font-size: 2rem;
+            box-shadow: 0 2px 10px 0 rgba(0,224,255,0.18);
+            cursor: pointer;
+            opacity: 0.85;
+            transition: opacity 0.2s, background 0.2s;
+            display: none;
+        }
+        #backToTop:hover {
+            opacity: 1;
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+        }
+        @media (max-width: 600px) {
+            #backToTop {
+                bottom: 16px;
+                left: 16px;
+                width: 38px;
+                height: 38px;
+                font-size: 1.4rem;
+            }
+    }
     </style>
 </head>
 <body>
     <header>
         <div class="header-container">
             <a href="#" class="logo" data-page="home">
-                <img src="https://www.svgrepo.com/show/492990/pc-security.svg" alt="Logo" style="width:38px;height:38px;border-radius:8px;vertical-align:middle; margin-top:4px;">
+                <img src="c:\Users\ACER\Downloads\86655597224-removebg-preview.png" 
+                    alt="SecPulse Logo" style="width:90px;height:90px;border-radius:8px;vertical-align:middle;margin-top:4px;">
                 <span style="margin-left: 10px;">SecPulse</span>
             </a>
             <nav>
@@ -579,6 +965,8 @@
                     <li><a href="#" data-page="home" class="active">Home</a></li>
                     <li><a href="#" data-page="news">News</a></li>
                     <li><a href="#" data-page="tools">Tools</a></li>
+                    <li><a href="#" data-page="learn">Learn</a></li>
+                    <li><a href="#" data-page="roadmap">Roadmap</a></li>
                     <li><a href="#" data-page="about">About Me</a></li>
                     <li><a href="#" data-page="contact">Contact</a></li>
                 </ul>
@@ -589,52 +977,281 @@
     <main>
         <!-- Home Page -->
         <div id="home" class="page active">
-            <section class="hero">
-                <div class="hero-content">
-                    <h1>SecPulse</h1>
-                    <p>Your trusted source for cybersecurity news, analysis, and resources. Stay ahead of emerging threats and protect what matters most in our interconnected digital world.</p>
-                </div>
+            <!-- Hero Section with Animated Headline -->
+            <section class="hero" style="position:relative;overflow:hidden;">
+                <div style="position:absolute;top:-60px;left:-60px;width:220px;height:220px;background:radial-gradient(circle at 60% 40%, var(--primary) 0%, transparent 80%);z-index:0;opacity:0.18;"></div>
+                <div style="position:absolute;bottom:-60px;right:-60px;width:220px;height:220px;background:radial-gradient(circle at 40% 60%, var(--accent) 0%, transparent 80%);z-index:0;opacity:0.18;"></div>
+                <h1 class="hero-title">
+                    <span class="hero-icon">🛡️</span>
+                    Unlock the <span class="gradient-text">Secrets</span> of Cyber security
+                </h1>
+                <p style="font-size:1.25rem;color:var(--text-muted);max-width:600px;margin:1.5rem auto 2.2rem auto;">
+                    Ever wondered how hackers think? Or how digital heists are stopped? <br>
+                    <b>SecPulse</b> is your gateway to the hidden world of cyber threats, real hacking labs, and the latest security news.
+                </p>
+                <a href="#" data-page="roadmap" class="download-btn" style="font-size:1.15rem;padding:1rem 2.5rem;">Start Your Journey</a>
             </section>
-            <div class="card">
-                <h2>Why Cybersecurity Awareness Matters</h2>
-                <p>In today's digital landscape, cyber threats evolve at an unprecedented pace. From sophisticated ransomware attacks targeting critical infrastructure to data breaches affecting millions of users, the cybersecurity threat landscape continues to expand. SecPulse provides real-time intelligence, expert analysis, and actionable insights to help organizations and individuals stay protected.</p>
-                <br>
-                <p>Our mission is to democratize cybersecurity knowledge, making complex security concepts accessible to everyone. Whether you're a security professional, IT administrator, or simply someone who wants to stay informed about digital threats, SecPulse delivers the intelligence you need to make informed security decisions.</p>
+
+            <!-- Teaser Cards Section -->
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:2rem;margin:2.5rem 0;">
+                <!-- News Teaser -->
+                <div class="card" style="background:linear-gradient(120deg, var(--bg-card) 70%, var(--primary) 180%);">
+                    <h2 style="font-size:1.3rem;font-weight:800;color:var(--primary);margin-bottom:0.7rem;">🚨 Hot Threat</h2>
+                    <p style="color:var(--text-muted);margin-bottom:1.2rem;">
+                        Iranian-backed cyberattacks are targeting global infrastructure. Are you prepared for the next wave?
+                    </p>
+                    <a href="#" data-page="news" class="download-btn" style="padding:0.7rem 1.7rem;font-size:1rem;">Read Latest News</a>
+                </div>
+                <!-- Tool Teaser -->
+                <div class="card" style="background:linear-gradient(120deg, var(--bg-card) 70%, var(--accent) 180%);">
+                    <h2 style="font-size:1.3rem;font-weight:800;color:var(--accent);margin-bottom:0.7rem;">🛠️ Tool of the Day</h2>
+                    <p style="color:var(--text-muted);margin-bottom:1.2rem;">
+                        <b title="Shodan is a search engine that lets users find specific types of computers and devices connected to the internet.">Shodan</b> – The search engine for hackers. Discover what devices are exposed on the internet right now.
+                    </p>
+                    <a href="#" data-page="tools" class="download-btn" style="padding:0.7rem 1.7rem;font-size:1rem;">Explore Tools</a>
+                </div>
+                <!-- Challenge Teaser -->
+                <div class="card" style="background:linear-gradient(120deg, var(--bg-card) 70%, var(--success) 180%);">
+                    <h2 style="font-size:1.3rem;font-weight:800;color:var(--success);margin-bottom:0.7rem;">🎯 Quick Challenge</h2>
+                    <p style="color:var(--text-muted);margin-bottom:1.2rem;">
+                        Can you spot the vulnerability in this login form? <br>
+                        <span style="font-size:0.98rem;">Try a real CTF challenge and test your skills!</span>
+                    </p>
+                    <a href="#" data-page="learn" class="download-btn" style="padding:0.7rem 1.7rem;font-size:1rem;">Try a Challenge</a>
+                </div>
             </div>
-            <div class="download-section">
-                <h3>Latest Security Report</h3>
-                <p>Download our comprehensive Q2 2025 Cybersecurity Threat Landscape Report</p>
-                <button class="download-btn" onclick="checkCyberState()">
-                  ✅ Check The State of Cyber Threats Today
-                </button>
+
+            <!-- Community & Curiosity Section -->
+            <div class="card" style="text-align:center;background:linear-gradient(120deg, var(--bg-card) 70%, var(--secondary) 180%);">
+                <h2 style="font-size:1.25rem;font-weight:800;color:var(--secondary);margin-bottom:0.7rem;">👾 Join the Pulse</h2>
+                <p style="color:var(--text-muted);font-size:1.08rem;">
+                    Join a growing community of cyber explorers, white-hat hackers, and digital defenders.<br>
+                    <span style="color:var(--primary);font-weight:700;">Every click here could change how you see the digital world.</span>
+                </p>
+                <div style="margin-top:1.2rem;">
+                    <a href="#" data-page="about" class="about-btn" style="margin:0 0.5rem;">About Me</a>
+                    <a href="#" data-page="contact" class="about-btn" style="margin:0 0.5rem;">Contact</a>
+                </div>
             </div>
         </div>
+
+</style>
         <!-- News Page -->
-        <div id="news" class="page">
-            <h1>Latest Cybersecurity News</h1>
-            <p>Stay informed about the latest security incidents, vulnerabilities, and threat intelligence from around the globe.</p>
-            <div class="news-grid" id="newsGrid">
-                <article class="news-card"><div class="news-header"><div class="news-date">June 15, 2025</div><h3 class="news-title">Major Healthcare Data Breach Affects 2.8 Million Patients</h3><span class="news-category">Data Breach</span></div><div class="news-content"><p class="news-summary">A sophisticated cyber attack compromised health records of 2.8 million patients via a third-party vendor.</p><a href="#" class="read-more" onclick="openNewsDetail('healthcare-breach-2025')">Read More</a></div></article>
-                <article class="news-card"><div class="news-header"><div class="news-date">June 14, 2025</div><h3 class="news-title">Critical Zero-Day Vulnerability in VPN Software</h3><span class="news-category">Vulnerability</span></div><div class="news-content"><p class="news-summary">A zero-day in a popular VPN solution allows remote code execution and is being actively exploited.</p><a href="#" class="read-more" onclick="openNewsDetail('vpn-zero-day-2025')">Read More</a></div></article>
-                <article class="news-card"><div class="news-header"><div class="news-date">June 13, 2025</div><h3 class="news-title">Ransomware Hits Major Logistics Company</h3><span class="news-category">Ransomware</span></div><div class="news-content"><p class="news-summary">A global logistics firm faces operational shutdown after a targeted ransomware attack encrypted core systems.</p><a href="#" class="read-more" onclick="openNewsDetail('logistics-ransomware-2025')">Read More</a></div></article>
-                <article class="news-card"><div class="news-header"><div class="news-date">June 12, 2025</div><h3 class="news-title">Banking Trojan Infects 100,000 Devices</h3><span class="news-category">Malware</span></div><div class="news-content"><p class="news-summary">The "BankBot" trojan evolves with anti-analysis features, targeting mobile banking apps worldwide.</p><a href="#" class="read-more" onclick="openNewsDetail('bankbot-2025')">Read More</a></div></article>
-                <article class="news-card"><div class="news-header"><div class="news-date">June 11, 2025</div><h3 class="news-title">IoT Botnet Grows to 2.5 Million Devices</h3><span class="news-category">IoT Security</span></div><div class="news-content"><p class="news-summary">"ThingNet" botnet now controls 2.5 million smart devices, used for DDoS and crypto mining.</p><a href="#" class="read-more" onclick="openNewsDetail('iot-botnet-2025')">Read More</a></div></article>
-                <article class="news-card"><div class="news-header"><div class="news-date">June 10, 2025</div><h3 class="news-title">Cloud Misconfiguration Exposes 5M Users</h3><span class="news-category">Cloud Security</span></div><div class="news-content"><p class="news-summary">A misconfigured storage bucket exposed personal data of 5 million users for three weeks.</p><a href="#" class="read-more" onclick="openNewsDetail('cloud-leak-2025')">Read More</a></div></article>
-                <article class="news-card"><div class="news-header"><div class="news-date">June 9, 2025</div><h3 class="news-title">Supply Chain Attack on Software Vendor</h3><span class="news-category">Supply Chain</span></div><div class="news-content"><p class="news-summary">Attackers compromised a software update, impacting thousands of enterprise customers.</p><a href="#" class="read-more" onclick="openNewsDetail('supply-chain-2025')">Read More</a></div></article>
-                <article class="news-card"><div class="news-header"><div class="news-date">June 8, 2025</div><h3 class="news-title">Phishing Campaign Targets Remote Workers</h3><span class="news-category">Phishing</span></div><div class="news-content"><p class="news-summary">A new phishing wave uses fake VPN login pages to steal credentials from remote employees.</p><a href="#" class="read-more" onclick="openNewsDetail('phishing-remote-2025')">Read More</a></div></article>
-                <article class="news-card"><div class="news-header"><div class="news-date">June 7, 2025</div><h3 class="news-title">Nation-State APT Targets Energy Sector</h3><span class="news-category">APT</span></div><div class="news-content"><p class="news-summary">An advanced persistent threat group launched attacks on energy infrastructure in Europe.</p><a href="#" class="read-more" onclick="openNewsDetail('apt-energy-2025')">Read More</a></div></article>
-                <article class="news-card"><div class="news-header"><div class="news-date">June 6, 2025</div><h3 class="news-title">Zero Trust Adoption Accelerates</h3><span class="news-category">Trends</span></div><div class="news-content"><p class="news-summary">Organizations worldwide are rapidly adopting Zero Trust models to combat modern threats.</p><a href="#" class="read-more" onclick="openNewsDetail('zero-trust-2025')">Read More</a></div></article>
-                <article class="news-card"><div class="news-header"><div class="news-date">June 5, 2025</div><h3 class="news-title">Critical Patch Released for Web Servers</h3><span class="news-category">Patch</span></div><div class="news-content"><p class="news-summary">Vendors urge immediate patching of a critical vulnerability in popular web server software.</p><a href="#" class="read-more" onclick="openNewsDetail('webserver-patch-2025')">Read More</a></div></article>
-                <article class="news-card"><div class="news-header"><div class="news-date">June 4, 2025</div><h3 class="news-title">Insider Threats on the Rise</h3><span class="news-category">Insider Threat</span></div><div class="news-content"><p class="news-summary">Reports show a 30% increase in insider-related security incidents in the last year.</p><a href="#" class="read-more" onclick="openNewsDetail('insider-threat-2025')">Read More</a></div></article>
-                <article class="news-card"><div class="news-header"><div class="news-date">June 3, 2025</div><h3 class="news-title">AI Used in Social Engineering Attacks</h3><span class="news-category">AI Security</span></div><div class="news-content"><p class="news-summary">Attackers leverage AI to craft convincing phishing emails and deepfake audio scams.</p><a href="#" class="read-more" onclick="openNewsDetail('ai-social-2025')">Read More</a></div></article>
-                <article class="news-card"><div class="news-header"><div class="news-date">June 2, 2025</div><h3 class="news-title">DDoS Attacks Hit Record High</h3><span class="news-category">DDoS</span></div><div class="news-content"><p class="news-summary">Global DDoS attack volume reached new highs, targeting financial and government sectors.</p><a href="#" class="read-more" onclick="openNewsDetail('ddos-2025')">Read More</a></div></article>
-                <article class="news-card"><div class="news-header"><div class="news-date">June 1, 2025</div><h3 class="news-title">Biometric Data Leak at Tech Firm</h3><span class="news-category">Privacy</span></div><div class="news-content"><p class="news-summary">A tech company exposed biometric data of employees due to insecure cloud storage.</p><a href="#" class="read-more" onclick="openNewsDetail('biometric-leak-2025')">Read More</a></div></article>
-                <article class="news-card"><div class="news-header"><div class="news-date">May 31, 2025</div><h3 class="news-title">New Android Spyware Discovered</h3><span class="news-category">Mobile Security</span></div><div class="news-content"><p class="news-summary">Researchers found a new Android spyware app that evades detection and steals SMS data.</p><a href="#" class="read-more" onclick="openNewsDetail('android-spyware-2025')">Read More</a></div></article>
-                <article class="news-card"><div class="news-header"><div class="news-date">May 30, 2025</div><h3 class="news-title">Massive Credential Stuffing Attack</h3><span class="news-category">Account Security</span></div><div class="news-content"><p class="news-summary">Millions of accounts targeted in a large-scale credential stuffing campaign this week.</p><a href="#" class="read-more" onclick="openNewsDetail('credential-stuffing-2025')">Read More</a></div></article>
-                <article class="news-card"><div class="news-header"><div class="news-date">May 29, 2025</div><h3 class="news-title">Critical Flaw in IoT Cameras</h3><span class="news-category">IoT Security</span></div><div class="news-content"><p class="news-summary">A vulnerability in popular IoT cameras allows attackers to access live video feeds remotely.</p><a href="#" class="read-more" onclick="openNewsDetail('iot-camera-flaw-2025')">Read More</a></div></article>
-                <article class="news-card"><div class="news-header"><div class="news-date">May 28, 2025</div><h3 class="news-title">Fake Antivirus Spreads via Email</h3><span class="news-category">Malware</span></div><div class="news-content"><p class="news-summary">A fake antivirus installer is spreading through phishing emails, infecting thousands of PCs.</p><a href="#" class="read-more" onclick="openNewsDetail('fake-antivirus-2025')">Read More</a></div></article>
-            </div>
-        </div>
+<div id="news" class="page">
+    <h1>Latest Cybersecurity News</h1>
+    <p>Stay informed about the latest security incidents, vulnerabilities, and threat intelligence from around the globe.</p>
+    <div class="news-grid" id="newsGrid">
+<article class="news-card">
+    <div class="news-header">
+        <div class="news-date">June 2025</div>
+        <h3 class="news-title">CISOs Eye Iran Cyber Threat Spillover</h3>
+        <span class="news-category">Threats</span>
+    </div>
+    <div class="news-content">
+        <p class="news-summary">Cybersecurity leaders warn of potential Iranian-backed cyberattacks targeting U.S. infrastructure as geopolitical tensions rise.</p>
+        <a href="https://www.axios.com/newsletters/axios-future-of-cybersecurity-1038e950-4889-11f0-b558-17dac864894e" class="read-more" target="_blank">Read More</a>
+    </div>
+</article>
+<article class="news-card">
+    <div class="news-header">
+        <div class="news-date">June 2025</div>
+        <h3 class="news-title">Companies Warned of Iranian Cyberattacks</h3>
+        <span class="news-category">Threats</span>
+    </div>
+    <div class="news-content">
+        <p class="news-summary">U.S. government and private companies are warned of potential cyber retaliation from Iran-based groups.</p>
+        <a href="https://www.wsj.com/articles/companies-warned-on-iranian-cyberattacks-9902c1d9" class="read-more" target="_blank">Read More</a>
+    </div>
+</article>
+<article class="news-card">
+    <div class="news-header">
+        <div class="news-date">June 2025</div>
+        <h3 class="news-title">US Braces for Israel–Iran Cyber Spillover</h3>
+        <span class="news-category">Threats</span>
+    </div>
+    <div class="news-content">
+        <p class="news-summary">Tensions between Israel and Iran raise concerns of cyber threats spilling into U.S. digital infrastructure.</p>
+        <a href="https://www.axios.com/2025/06/17/us-iran-israel-cyberattacks-critical-infrastructure" class="read-more" target="_blank">Read More</a>
+    </div>
+</article>
+<article class="news-card">
+    <div class="news-header">
+        <div class="news-date">June 2025</div>
+        <h3 class="news-title">Washington Post Hit by Targeted Cyberattack</h3>
+        <span class="news-category">Cyber Attack</span>
+    </div>
+    <div class="news-content">
+        <p class="news-summary">Emails of journalists at the Washington Post were compromised in a suspected targeted cyber operation.</p>
+        <a href="https://www.wsj.com/tech/cybersecurity/cyberattack-on-washington-post-compromises-email-accounts-of-journalists-70bf1300" class="read-more" target="_blank">Read More</a>
+    </div>
+</article>
+<article class="news-card">
+    <div class="news-header">
+        <div class="news-date">June 2025</div>
+        <h3 class="news-title">Cyberattacks Disrupt Retail Supply Chains</h3>
+        <span class="news-category">Ransomware</span>
+    </div>
+    <div class="news-content">
+        <p class="news-summary">Ransomware and DDoS attacks are affecting major grocery and retail chains, delaying deliveries and emptying shelves.</p>
+        <a href="https://apnews.com/article/9105458e6ef45152b065e623d0bf06fd" class="read-more" target="_blank">Read More</a>
+    </div>
+</article>
+<article class="news-card">
+    <div class="news-header">
+        <div class="news-date">June 2025</div>
+        <h3 class="news-title">Victoria's Secret Website Taken Down by Hackers</h3>
+        <span class="news-category">Cyber Attack</span>
+    </div>
+    <div class="news-content">
+        <p class="news-summary">The popular fashion brand temporarily took down its website following a cyberattack.</p>
+        <a href="https://timesofindia.indiatimes.com/technology/tech-news/victorias-secret-hit-by-cyberattack-company-says-we-have-taken-down-our-website-and/articleshow/121552227.cms" class="read-more" target="_blank">Read More</a>
+    </div>
+</article>
+<article class="news-card">
+    <div class="news-header">
+        <div class="news-date">June 2025</div>
+        <h3 class="news-title">Over 16 Billion Passwords Leaked Online</h3>
+        <span class="news-category">Data Leak</span>
+    </div>
+    <div class="news-content">
+        <p class="news-summary">A massive dump containing billions of passwords from multiple platforms has surfaced online.</p>
+        <a href="https://indianexpress.com/article/technology/tech-news-technology/16-billion-passwords-leaked-online-what-we-know-10077546/" class="read-more" target="_blank">Read More</a>
+    </div>
+</article>
+<article class="news-card">
+    <div class="news-header">
+        <div class="news-date">June 2025</div>
+        <h3 class="news-title">AI Is Revolutionizing Cybersecurity for SMBs</h3>
+        <span class="news-category">AI Security</span>
+    </div>
+    <div class="news-content">
+        <p class="news-summary">AI-based tools are giving small and medium businesses an edge in threat detection and response.</p>
+        <a href="https://www.forbes.com/councils/forbestechcouncil/2025/06/13/how-ai-is-revolutionizing-cybersecurity-for-small-businesses/" class="read-more" target="_blank">Read More</a>
+    </div>
+</article>
+<article class="news-card">
+    <div class="news-header">
+        <div class="news-date">2024</div>
+        <h3 class="news-title">Microsoft Digital Defense Report 2024</h3>
+        <span class="news-category">Report</span>
+    </div>
+    <div class="news-content">
+        <p class="news-summary">Microsoft's annual threat report highlights an increase in identity-based and state-sponsored attacks.</p>
+        <a href="https://www.microsoft.com/en-us/security/security-insider/intelligence-reports/microsoft-digital-defense-report-2024" class="read-more" target="_blank">Read More</a>
+    </div>
+</article>
+<article class="news-card">
+    <div class="news-header">
+        <div class="news-date">2025</div>
+        <h3 class="news-title">Cybersecurity Summer Reading List 2025</h3>
+        <span class="news-category">Trends</span>
+    </div>
+    <div class="news-content">
+        <p class="news-summary">Top recommended books, blogs, and podcasts for staying updated on cybersecurity trends this summer.</p>
+        <a href="https://www.cybersecurityintelligence.com/blog/cybersecurity-summer-reading-list-8477.html" class="read-more" target="_blank">Read More</a>
+    </div>
+</article>
+<article class="news-card">
+    <div class="news-header">
+        <div class="news-date">2025</div>
+        <h3 class="news-title">The Hacker News – Breach & Threat Updates</h3>
+        <span class="news-category">News</span>
+    </div>
+    <div class="news-content">
+        <p class="news-summary">A go-to source for breaking stories on cyberattacks, zero-days, and emerging vulnerabilities.</p>
+        <a href="https://thehackernews.com/" class="read-more" target="_blank">Read More</a>
+    </div>
+</article>
+<article class="news-card">
+    <div class="news-header">
+        <div class="news-date">2025</div>
+        <h3 class="news-title">Cyware Labs – Smart Cyber News Aggregator</h3>
+        <span class="news-category">Aggregator</span>
+    </div>
+    <div class="news-content">
+        <p class="news-summary">AI-driven news platform that aggregates real-time cybersecurity stories from multiple sources.</p>
+        <a href="https://social.cyware.com/cyber-security-news-articles" class="read-more" target="_blank">Read More</a>
+    </div>
+</article>
+<article class="news-card">
+    <div class="news-header">
+        <div class="news-date">2025</div>
+        <h3 class="news-title">CrowdStrike Global Threat Report 2025</h3>
+        <span class="news-category">Report</span>
+    </div>
+    <div class="news-content">
+        <p class="news-summary">CrowdStrike reports growing use of malware-free intrusions and advanced persistent threats.</p>
+        <a href="https://www.crowdstrike.com/en-us/global-threat-report/" class="read-more" target="_blank">Read More</a>
+    </div>
+</article>
+<article class="news-card">
+    <div class="news-header">
+        <div class="news-date">2025</div>
+        <h3 class="news-title">Cybersecurity Dive – Industry Analysis</h3>
+        <span class="news-category">Analysis</span>
+    </div>
+    <div class="news-content">
+        <p class="news-summary">An in-depth news source offering security trend analysis and major breach insights.</p>
+        <a href="https://www.cybersecuritydive.com/" class="read-more" target="_blank">Read More</a>
+    </div>
+</article>
+<article class="news-card">
+    <div class="news-header">
+        <div class="news-date">2025</div>
+        <h3 class="news-title">SecurityWeek – Daily Security Briefings</h3>
+        <span class="news-category">Briefings</span>
+    </div>
+    <div class="news-content">
+        <p class="news-summary">SecurityWeek provides daily updates on the latest threats, vulnerabilities, and advisories.</p>
+        <a href="https://www.securityweek.com/" class="read-more" target="_blank">Read More</a>
+    </div>
+</article>
+<article class="news-card">
+    <div class="news-header">
+        <div class="news-date">2025</div>
+        <h3 class="news-title">CISA – Official Threat & Advisory Feed</h3>
+        <span class="news-category">Advisory</span>
+    </div>
+    <div class="news-content">
+        <p class="news-summary">The U.S. Cybersecurity and Infrastructure Security Agency shares alerts on active threats and patches.</p>
+        <a href="https://www.cisa.gov/topics/cyber-threats-and-advisories" class="read-more" target="_blank">Read More</a>
+    </div>
+</article>
+<article class="news-card">
+    <div class="news-header">
+        <div class="news-date">2025</div>
+        <h3 class="news-title">BleepingComputer – Malware & Tech Support Scams</h3>
+        <span class="news-category">Malware</span>
+    </div>
+    <div class="news-content">
+        <p class="news-summary">Renowned for accurate reporting on malware outbreaks and support scam techniques.</p>
+        <a href="https://www.bleepingcomputer.com/" class="read-more" target="_blank">Read More</a>
+    </div>
+</article>
+<article class="news-card">
+    <div class="news-header">
+        <div class="news-date">2025</div>
+        <h3 class="news-title">TechCrunch – Security News Section</h3>
+        <span class="news-category">Trends</span>
+    </div>
+    <div class="news-content">
+        <p class="news-summary">TechCrunch offers insights into hacks, leaks, and security trends affecting the tech industry.</p>
+        <a href="https://techcrunch.com/category/security/" class="read-more" target="_blank">Read More</a>
+    </div>
+</article>
+<article class="news-card">
+    <div class="news-header">
+        <div class="news-date">2025</div>
+        <h3 class="news-title">Fortinet – Cyber Attack Trends</h3>
+        <span class="news-category">Trends</span>
+    </div>
+    <div class="news-content">
+        <p class="news-summary">Fortinet's resource hub reports on recent attack methods and how businesses were compromised.</p>
+        <a href="https://www.fortinet.com/resources/cyberglossary/recent-cyber-attacks" class="read-more" target="_blank">Read More</a>
+    </div>
+</article>   
+    </div>
+</div>
         <!-- Tools Page -->
         <div id="tools" class="page">
             <h1>Cybersecurity Tools & Resources</h1>
@@ -663,6 +1280,354 @@
                 <div class="tool-card"><div class="tool-icon">🛡️</div><h3 class="tool-title">Snort</h3><p class="tool-description">Network intrusion detection and prevention system.</p><a href="https://www.snort.org" class="tool-link" target="_blank">Get Snort</a></div>
             </div>
         </div>
+<!-- Learn Page -->
+<div id="learn" class="page">
+    <h1>Master Cybersecurity with the Right Resources</h1>
+    <p>This page offers curated tools, platforms, and content for learners at all levels. Filter by skill level or search for your favorite resource.</p>
+
+    <!-- Search & Filter -->
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;margin:1.5rem 0;">
+        <input type="text" id="learn-search" placeholder="Search resources..." style="flex:1;min-width:220px;padding:0.7rem;border-radius:8px;border:1px solid #23283a;">
+        <select id="learn-filter" style="padding:0.7rem;border-radius:8px;border:1px solid #23283a;">
+            <option value="">All Levels</option>
+            <option value="beginner">Beginner</option>
+            <option value="intermediate">Intermediate</option>
+            <option value="advanced">Advanced</option>
+        </select>
+    </div>
+
+    <!-- Top Free Learning Platforms -->
+    <h2>📚 Top Free Learning Platforms</h2>
+    <div class="tools-grid" id="learn-platforms">
+        <div class="tool-card" data-level="beginner intermediate">
+            <div class="tool-icon">🧑‍💻</div>
+            <h3 class="tool-title">TryHackMe <span class="news-category">Beginner–Intermediate</span></h3>
+            <p class="tool-description">Interactive labs for hands-on cybersecurity learning and CTFs.</p>
+            <a href="https://tryhackme.com/" class="tool-link" target="_blank">Visit Site</a>
+        </div>
+        <div class="tool-card" data-level="intermediate advanced">
+            <div class="tool-icon">🛡️</div>
+            <h3 class="tool-title">Hack The Box <span class="news-category">Intermediate–Advanced</span></h3>
+            <p class="tool-description">Realistic hacking scenarios and labs for penetration testers.</p>
+            <a href="https://www.hackthebox.com/" class="tool-link" target="_blank">Visit Site</a>
+        </div>
+        <div class="tool-card" data-level="beginner">
+            <div class="tool-icon">💻</div>
+            <h3 class="tool-title">OverTheWire <span class="news-category">Beginner</span></h3>
+            <p class="tool-description">Terminal-based war games to learn Linux and security basics.</p>
+            <a href="https://overthewire.org/wargames/" class="tool-link" target="_blank">Visit Site</a>
+        </div>
+        <div class="tool-card" data-level="beginner intermediate">
+            <div class="tool-icon">🎥</div>
+            <h3 class="tool-title">Cybrary <span class="news-category">Beginner–Intermediate</span></h3>
+            <p class="tool-description">Video-based courses and career paths in cybersecurity.</p>
+            <a href="https://www.cybrary.it/" class="tool-link" target="_blank">Visit Site</a>
+        </div>
+        <div class="tool-card" data-level="beginner intermediate">
+            <div class="tool-icon">🌐</div>
+            <h3 class="tool-title">PortSwigger Web Academy <span class="news-category">Beginner–Intermediate</span></h3>
+            <p class="tool-description">Free, interactive web security tutorials and labs.</p>
+            <a href="https://portswigger.net/web-security" class="tool-link" target="_blank">Visit Site</a>
+        </div>
+    </div>
+
+    <!-- Top YouTube Channels -->
+    <h2 style="margin-top:2.5rem;">🎥 Top YouTube Channels</h2>
+    <div class="tools-grid">
+        <div class="tool-card">
+            <div class="tool-icon">🎥</div>
+            <h3 class="tool-title">NetworkChuck</h3>
+            <p class="tool-description">Networking, pentesting, and fun labs.</p>
+            <a href="https://www.youtube.com/c/NetworkChuck" class="tool-link" target="_blank">Visit Channel</a>
+        </div>
+        <div class="tool-card">
+            <div class="tool-icon">🎥</div>
+            <h3 class="tool-title">The Cyber Mentor</h3>
+            <p class="tool-description">Ethical hacking, CTFs, and career advice.</p>
+            <a href="https://www.youtube.com/c/TheCyberMentor" class="tool-link" target="_blank">Visit Channel</a>
+        </div>
+        <div class="tool-card">
+            <div class="tool-icon">🎥</div>
+            <h3 class="tool-title">STÖK</h3>
+            <p class="tool-description">Bug bounty, web hacking, and community.</p>
+            <a href="https://www.youtube.com/c/STOKfredrik" class="tool-link" target="_blank">Visit Channel</a>
+        </div>
+        <div class="tool-card">
+            <div class="tool-icon">🎥</div>
+            <h3 class="tool-title">John Hammond</h3>
+            <p class="tool-description">CTFs, malware analysis, and tutorials.</p>
+            <a href="https://www.youtube.com/c/JohnHammond010" class="tool-link" target="_blank">Visit Channel</a>
+        </div>
+        <div class="tool-card">
+            <div class="tool-icon">🎥</div>
+            <h3 class="tool-title">LiveOverflow</h3>
+            <p class="tool-description">CTFs, binary exploitation, and deep dives.</p>
+            <a href="https://www.youtube.com/c/LiveOverflow" class="tool-link" target="_blank">Visit Channel</a>
+        </div>
+    </div>
+
+    <!-- Books & PDFs -->
+    <h2 style="margin-top:2.5rem;">📖 Books & PDFs</h2>
+    <div class="tools-grid">
+        <div class="tool-card">
+            <div class="tool-icon">📚</div>
+            <h3 class="tool-title">The Web Application Hacker’s Handbook <span class="news-category">Intermediate</span></h3>
+            <p class="tool-description">Comprehensive guide to web app security testing.<br>Type: Print/PDF</p>
+            <a href="https://www.amazon.com/Web-Application-Hackers-Handbook-Exploiting/dp/1118026470" class="tool-link" target="_blank">Amazon</a>
+        </div>
+        <div class="tool-card">
+            <div class="tool-icon">🦠</div>
+            <h3 class="tool-title">Practical Malware Analysis <span class="news-category">Advanced</span></h3>
+            <p class="tool-description">Step-by-step guide to analyzing malware.<br>Type: Print/PDF</p>
+            <a href="https://www.amazon.com/Practical-Malware-Analysis-Dissecting-Malicious/dp/1593272901" class="tool-link" target="_blank">Amazon</a>
+        </div>
+        <div class="tool-card">
+            <div class="tool-icon">🛠️</div>
+            <h3 class="tool-title">The Art of Exploitation <span class="news-category">Advanced</span></h3>
+            <p class="tool-description">Deep dive into exploitation techniques.<br>Type: Print/PDF</p>
+            <a href="https://www.amazon.com/Art-Exploitation-2nd-Jon-Erickson/dp/1593271441" class="tool-link" target="_blank">Amazon</a>
+        </div>
+        <div class="tool-card">
+            <div class="tool-icon">🔵</div>
+            <h3 class="tool-title">Blue Team Field Manual <span class="news-category">Beginner</span></h3>
+            <p class="tool-description">Quick reference for blue teamers.<br>Type: Print/PDF</p>
+            <a href="https://www.amazon.com/Blue-Team-Field-Manual-BTFM/dp/154101636X" class="tool-link" target="_blank">Amazon</a>
+        </div>
+    </div>
+
+    <!-- Learning Tools -->
+    <h2 style="margin-top:2.5rem;">🛠️ Learning Tools</h2>
+    <div class="tools-grid">
+        <div class="tool-card"><div class="tool-icon">🧪</div><h3 class="tool-title">Burp Suite Community</h3><p class="tool-description">Web app security testing. <span class="news-category">Hands-on</span> <span class="news-category">Local</span></p><a href="https://portswigger.net/burp/communitydownload" class="tool-link" target="_blank">Download</a></div>
+        <div class="tool-card"><div class="tool-icon">📊</div><h3 class="tool-title">Wireshark</h3><p class="tool-description">Network protocol analyzer. <span class="news-category">Hands-on</span> <span class="news-category">Local</span></p><a href="https://www.wireshark.org/" class="tool-link" target="_blank">Download</a></div>
+        <div class="tool-card"><div class="tool-icon">🧃</div><h3 class="tool-title">OWASP Juice Shop</h3><p class="tool-description">Intentionally vulnerable web app. <span class="news-category">Hands-on</span> <span class="news-category">Web-based</span></p><a href="https://owasp.org/www-project-juice-shop/" class="tool-link" target="_blank">Learn More</a></div>
+        <div class="tool-card"><div class="tool-icon">💻</div><h3 class="tool-title">DVWA</h3><p class="tool-description">Damn Vulnerable Web App for practice. <span class="news-category">Hands-on</span> <span class="news-category">Local</span></p><a href="https://dvwa.co.uk/" class="tool-link" target="_blank">Learn More</a></div>
+        <div class="tool-card"><div class="tool-icon">⚡</div><h3 class="tool-title">CyberChef</h3><p class="tool-description">Web-based tool for encoding, decoding, and analysis. <span class="news-category">Web-based</span></p><a href="https://gchq.github.io/CyberChef/" class="tool-link" target="_blank">Use CyberChef</a></div>
+    </div>
+
+    <!-- Online Challenges & CTFs -->
+    <h2 style="margin-top:2.5rem;">🧠 Online Challenges & CTFs</h2>
+    <div class="tools-grid">
+        <div class="tool-card"><div class="tool-icon">🏁</div><h3 class="tool-title">Root-Me.org <span class="news-category">All Levels</span></h3><p class="tool-description">Wide range of CTFs and hacking challenges. Registration required.</p><a href="https://www.root-me.org/" class="tool-link" target="_blank">Visit</a></div>
+        <div class="tool-card"><div class="tool-icon">🎯</div><h3 class="tool-title">PicoCTF <span class="news-category">Beginner</span></h3><p class="tool-description">Beginner-friendly CTF platform. Free registration.</p><a href="https://picoctf.org/" class="tool-link" target="_blank">Visit</a></div>
+        <div class="tool-card"><div class="tool-icon">🛡️</div><h3 class="tool-title">CyberDefenders <span class="news-category">Intermediate</span></h3><p class="tool-description">Blue team CTFs and incident response labs. Registration required.</p><a href="https://cyberdefenders.org/" class="tool-link" target="_blank">Visit</a></div>
+        <div class="tool-card"><div class="tool-icon">⏱️</div><h3 class="tool-title">CTFTime.org <span class="news-category">All Levels</span></h3><p class="tool-description">Calendar and ranking for global CTF events.</p><a href="https://ctftime.org/" class="tool-link" target="_blank">Visit</a></div>
+    </div>
+
+    <!-- Cheat Sheets & Quick Guides -->
+    <h2 style="margin-top:2.5rem;">🧩 Cheat Sheets & Quick Guides</h2>
+    <div class="tools-grid">
+        <div class="tool-card">
+            <div class="tool-icon">🧩</div>
+            <h3 class="tool-title">OWASP Top 10 Summary</h3>
+            <p class="tool-description">Key web vulnerabilities explained simply.</p>
+            <a href="https://owasp.org/www-project-top-ten/" class="tool-link" target="_blank">View</a>
+        </div>
+        <div class="tool-card">
+            <div class="tool-icon">🧩</div>
+            <h3 class="tool-title">Nmap Commands</h3>
+            <p class="tool-description">Essential Nmap scanning options and tips.</p>
+            <a href="https://nmap.org/book/man-briefoptions.html" class="tool-link" target="_blank">View</a>
+        </div>
+        <div class="tool-card">
+            <div class="tool-icon">🧩</div>
+            <h3 class="tool-title">Burp Suite Tips</h3>
+            <p class="tool-description">Shortcuts and tricks for Burp Suite users.</p>
+            <a href="https://portswigger.net/burp/documentation/desktop/getting-started/tips" class="tool-link" target="_blank">View</a>
+        </div>
+        <div class="tool-card">
+            <div class="tool-icon">🧩</div>
+            <h3 class="tool-title">HTTP Status Codes</h3>
+            <p class="tool-description">Quick reference for HTTP response codes.</p>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="tool-link" target="_blank">View</a>
+        </div>
+    </div>
+
+    <!-- Other Curated Resources -->
+    <h2 style="margin-top:2.5rem;">🔗 Other Curated Resources</h2>
+    <div class="tools-grid">
+        <div class="tool-card">
+            <div class="tool-icon">👥</div>
+            <h3 class="tool-title">Reddit Communities</h3>
+            <div class="resource-badges">
+                <a href="https://www.reddit.com/r/netsec/" target="_blank" class="resource-badge">r/netsec</a>
+                <a href="https://www.reddit.com/r/cybersecurity/" target="_blank" class="resource-badge">r/cybersecurity</a>
+            </div>
+        </div>
+        <div class="tool-card">
+            <div class="tool-icon">💻</div>
+            <h3 class="tool-title">GitHub Lists</h3>
+            <div class="resource-badges">
+                <a href="https://github.com/sindresorhus/awesome-hacking" target="_blank" class="resource-badge">Awesome Hacking</a>
+                <a href="https://github.com/swisskyrepo/PayloadsAllTheThings" target="_blank" class="resource-badge">PayloadsAllTheThings</a>
+            </div>
+        </div>
+        <div class="tool-card">
+            <div class="tool-icon">📰</div>
+            <h3 class="tool-title">Security Blogs</h3>
+            <div class="resource-badges">
+                <a href="https://www.hackerone.com/blog" target="_blank" class="resource-badge">HackerOne Blog</a>
+                <a href="https://krebsonsecurity.com/" target="_blank" class="resource-badge">Krebs on Security</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Newsletter Signup (Optional) -->
+    <div style="margin-top:2.5rem;text-align:center;">
+        <h3>📦 Get 20% discount on my Fiverr services NOW </h3>
+        <form id="discountForm" action="https://formsubmit.co/757dc3a9674de57ca81c56acd20e09e6" method="POST" style="display:inline-block;">
+            <input type="hidden" name="source" value="discount-section">
+            <input type="email" name="email" placeholder="Your email" required style="padding:0.7rem;border-radius:8px;border:1px solid #23283a;">
+            <button type="submit" class="download-btn" style="margin-left:0.5rem;">Subscribe</button>
+        </form>
+        <div id="fiverrThanks" style="display:none; margin-top:1.5rem;">
+            <p style="color:var(--success);font-weight:700;">Thank you! Click below to get your discount:</p>
+            <a href="https://www.fiverr.com/s/Ay3jegB" target="_blank" class="download-btn" style="background:linear-gradient(90deg,#00e0ff,#ff4f81);color:#fff;">Go to my Fiverr Profile</a>
+        </div>   
+    </div>
+</div>
+
+<!-- Roadmap Page (Separate) -->
+<div id="roadmap" class="page">
+    <h1>🧭 Cybersecurity Learning Roadmap</h1>
+    <p style="color:var(--text-muted);font-size:1.1rem;">
+        Welcome to your complete Cybersecurity Learning Roadmap — designed for beginners and aspiring professionals. This roadmap guides you through structured stages with real, curated resources and hands-on platforms to build your skills progressively.
+    </p>
+    <div class="tools-grid">
+        <!-- Stage 1 -->
+        <div class="tool-card">
+            <div class="tool-icon">🧭</div>
+            <h3 class="tool-title">Stage 1: Introduction to Cybersecurity</h3>
+            <div class="roadmap-badges">
+                <a href="https://tryhackme.com/path/outline/cybersecurity101" target="_blank" class="roadmap-badge">Cybersecurity 101 (TryHackMe Path)</a>
+                <a href="https://www.cybrary.it/course/introduction-to-it-and-cybersecurity/" target="_blank" class="roadmap-badge">What is Cybersecurity? (Cybrary Course)</a>
+            </div>
+        </div>
+        <!-- Stage 2 -->
+        <div class="tool-card">
+            <div class="tool-icon">🌐</div>
+            <h3 class="tool-title">Stage 2: Networking Fundamentals</h3>
+            <div class="roadmap-badges">
+                <a href="https://skillsforall.com/course/networking-basics" target="_blank" class="roadmap-badge">Networking Basics (Cisco SkillsForAll)</a>
+                <a href="https://overthewire.org/wargames/bandit/" target="_blank" class="roadmap-badge">OverTheWire Bandit (Intro to Networking & Linux)</a>
+            </div>
+        </div>
+        <!-- Stage 3 -->
+        <div class="tool-card">
+            <div class="tool-icon">🐧</div>
+            <h3 class="tool-title">Stage 3: Linux & Command Line</h3>
+            <div class="roadmap-badges">
+                <a href="https://tryhackme.com/room/linuxfundamentalspart1" target="_blank" class="roadmap-badge">Linux Fundamentals 1 (TryHackMe Room)</a>
+                <a href="https://tryhackme.com/room/linuxstrengthtraining" target="_blank" class="roadmap-badge">Linux Strength Training (TryHackMe)</a>
+                <a href="https://github.com/0xneobyte/TryHackMe-Learning-Path-From-Beginner-to-Expert" target="_blank" class="roadmap-badge">GitHub: TryHackMe Beginner to Expert Roadmap</a>
+            </div>
+        </div>
+        <!-- Stage 4 -->
+        <div class="tool-card">
+            <div class="tool-icon">🌐</div>
+            <h3 class="tool-title">Stage 4: Web Application Security</h3>
+            <div class="roadmap-badges">
+                <a href="https://portswigger.net/web-security/sql-injection" target="_blank" class="roadmap-badge">PortSwigger – SQL Injection Guide</a>
+                <a href="https://portswigger.net/web-security/sql-injection/lab-login-bypass" target="_blank" class="roadmap-badge">SQLi Login Bypass Lab</a>
+                <a href="https://portswigger.net/web-security/cross-site-scripting/cheat-sheet" target="_blank" class="roadmap-badge">XSS Cheat Sheet</a>
+                <a href="https://portswigger.net/web-security/cross-site-scripting/dom-based" target="_blank" class="roadmap-badge">DOM-based XSS Lab</a>
+                <a href="https://portswigger.net/web-security/cross-site-scripting/reflected/lab-html-context-nothing-encoded" target="_blank" class="roadmap-badge">Reflected XSS Lab (HTML Context)</a>
+            </div>
+        </div>
+        <!-- Stage 5 -->
+        <div class="tool-card">
+            <div class="tool-icon">🎥</div>
+            <h3 class="tool-title">Stage 5: Interactive Video Walkthroughs</h3>
+            <div class="roadmap-badges">
+                <a href="https://www.youtube.com/playlist?list=PLQgBsELjt__1Z6U864WkB7qFPRdVuYcb3" target="_blank" class="roadmap-badge">SQLi Playlist – PortSwigger Labs</a>
+                <a href="https://www.youtube.com/playlist?list=PLkiYG7l2OA1DKkSECW8ERWMTpAB89d2bA" target="_blank" class="roadmap-badge">TryHackMe Beginner Playlist</a>
+                <a href="https://www.youtube.com/watch?v=fzjpwrU9mC0" target="_blank" class="roadmap-badge">PortSwigger Lab: Reflected XSS (Video)</a>
+                <a href="https://www.youtube.com/watch?v=N_ebEmQMDe0" target="_blank" class="roadmap-badge">XSS Basics & Exploit Guide</a>
+            </div>
+        </div>
+        <!-- Stage 6 -->
+        <div class="tool-card">
+            <div class="tool-icon">🛡️</div>
+            <h3 class="tool-title">Stage 6: Penetration Testing & Exploitation</h3>
+            <div class="roadmap-badges">
+                <a href="https://help.tryhackme.com/en/articles/11172303-pt1-training-content" target="_blank" class="roadmap-badge">Penetration Tester Training (PT1 - TryHackMe)</a>
+                <a href="https://tryhackme.com/path/outline/presecurity" target="_blank" class="roadmap-badge">TryHackMe Pre-Security Path</a>
+                <a href="https://tryhackme.com/hacktivities/challenges" target="_blank" class="roadmap-badge">Hacktivities Challenges (Real-World Labs)</a>
+                <a href="https://github.com/rng70/tryhackme-roadmap" target="_blank" class="roadmap-badge">GitHub: THM Roadmap by Topic (350+ Rooms)</a>
+            </div>
+        </div>
+        <!-- Stage 7 -->
+        <div class="tool-card">
+            <div class="tool-icon">🔐</div>
+            <h3 class="tool-title">Stage 7: Cryptography</h3>
+            <div class="roadmap-badges">
+                <a href="https://cryptopals.com/" target="_blank" class="roadmap-badge">Cryptopals Crypto Challenges</a>
+                <a href="https://gchq.github.io/CyberChef/" target="_blank" class="roadmap-badge">CyberChef (Web-based tool for encoding, decoding, hashing)</a>
+            </div>
+        </div>
+        <!-- Stage 8 -->
+        <div class="tool-card">
+            <div class="tool-icon">🧠</div>
+            <h3 class="tool-title">Stage 8: Bug Bounty & Recon</h3>
+            <div class="roadmap-badges">
+                <a href="https://www.hacker101.com/" target="_blank" class="roadmap-badge">HackerOne Hacker101 Videos</a>
+                <a href="https://github.com/swisskyrepo/PayloadsAllTheThings" target="_blank" class="roadmap-badge">PayloadsAllTheThings (GitHub)</a>
+                <a href="https://github.com/lanmaster53/recon-ng" target="_blank" class="roadmap-badge">Recon-ng (Tool for information gathering)</a>
+            </div>
+        </div>
+        <!-- Stage 9 -->
+        <div class="tool-card">
+            <div class="tool-icon">🔍</div>
+            <h3 class="tool-title">Stage 9: Digital Forensics & Malware Analysis</h3>
+            <div class="roadmap-badges">
+                <a href="https://cyberdefenders.org/labs" target="_blank" class="roadmap-badge">DFIR Training Labs (CyberDefenders)</a>
+                <a href="https://www.sleuthkit.org/autopsy/" target="_blank" class="roadmap-badge">Autopsy Forensics Tool</a>
+                <a href="https://ghidra-sre.org/" target="_blank" class="roadmap-badge">Ghidra (Reverse Engineering Tool)</a>
+            </div>
+        </div>
+        <!-- Stage 10 -->
+        <div class="tool-card">
+            <div class="tool-icon">🔒</div>
+            <h3 class="tool-title">Stage 10: Defensive Security / Blue Team</h3>
+            <div class="roadmap-badges">
+                <a href="https://blueteamlabs.online/" target="_blank" class="roadmap-badge">Blue Team Labs Online</a>
+                <a href="https://www.splunk.com/en_us/training/free-courses/splunk-fundamentals-1.html" target="_blank" class="roadmap-badge">Splunk Fundamentals</a>
+                <a href="https://zeek.org/" target="_blank" class="roadmap-badge">Zeek Network Monitor</a>
+            </div>
+        </div>
+        <!-- Stage 11 -->
+        <div class="tool-card">
+            <div class="tool-icon">📘</div>
+            <h3 class="tool-title">Stage 11: Capture The Flag (CTF) Practice</h3>
+            <div class="roadmap-badges">
+                <a href="https://ctftime.org/" target="_blank" class="roadmap-badge">CTFTime.org (Event Listings)</a>
+                <a href="https://picoctf.org/" target="_blank" class="roadmap-badge">PicoCTF (Beginner-friendly CTF platform)</a>
+                <a href="https://www.root-me.org/?lang=en" target="_blank" class="roadmap-badge">Root-Me Challenges</a>
+            </div>
+        </div>
+        <!-- Stage 12 -->
+        <div class="tool-card">
+            <div class="tool-icon">🧩</div>
+            <h3 class="tool-title">Stage 12: Community Writeups & Notes</h3>
+            <div class="roadmap-badges">
+                <a href="https://github.com/sammymallya/OverTheWire-bandit-writeup" target="_blank" class="roadmap-badge">OTW Bandit Writeup – sammymallya</a>
+                <a href="https://github.com/cmpx0sec/OverTheWire-CTF-s" target="_blank" class="roadmap-badge">OverTheWire CTF Solutions – cmpx0sec</a>
+                <a href="https://github.com/Sandro-Hakobyan/OverTheWire-Wargames" target="_blank" class="roadmap-badge">Wargames Solutions – Sandro-Hakobyan</a>
+            </div>
+        </div>
+        <!-- Final Step -->
+        <div class="tool-card">
+            <div class="tool-icon">✅</div>
+            <h3 class="tool-title">Final Step: Certifications (Optional but Valuable)</h3>
+            <div class="roadmap-badges">
+                <a href="https://www.comptia.org/certifications/security" target="_blank" class="roadmap-badge">CompTIA Security+</a>
+                <a href="https://elearnsecurity.com/product/ejpt-certification/" target="_blank" class="roadmap-badge">eJPT</a>
+                <a href="https://www.offsec.com/courses/pen-200/" target="_blank" class="roadmap-badge">OSCP</a>
+                <a href="https://grow.google/certificates/cybersecurity/" target="_blank" class="roadmap-badge">Google Cybersecurity Certificate</a>
+            </div>
+        </div>
+    </div>
+</div>            
         <!-- About Me Page -->
         <div id="about" class="page">
             <div class="about-card">
@@ -674,21 +1639,21 @@
                 <p class="about-bio">
                     Passionate about website security, penetration testing, and malware analysis.<br>
                     I help secure websites by identifying and mitigating vulnerabilities through ethical hacking and consulting.<br>
-                    <span class="about-highlight">Cisco | Coursera | PortSwigger</span>
+                    <span class="about-highlight">Cisco | Coursera | PortSwigger | CompTIA</span>
                 </p>
             <div class="about-social">
             
-                <a href="#" title="Discord" target="_blank">
-                    <img src="https://www.svgrepo.com/show/353655/discord-icon.svg" alt="Discord" style="width:26px;height:26px;vertical-align:middle;">
+                <a href="https://www.fiverr.com/s/Ay3jegB" title="Fiverr" target="_blank">
+                    <img src="file:///C:/Users/ACER/Downloads/fiverr-icon%20(1).svg" alt="Fiverr" style="width:26px;height:26px;vertical-align:middle;">
                 </a>
            
                 <a href="https://t.me/SECPULSE" title="Telegram" target="_blank">
                     <img src="https://www.svgrepo.com/show/452115/telegram.svg" alt="Telegram" style="width:26px;height:26px;vertical-align:middle;">
-    </a>
+                </a>
             
                 <a href="https://www.instagram.com/_bdl._.fateh_/" title="Instagram" target="_blank">
                     <img src="https://www.svgrepo.com/show/452229/instagram-1.svg" alt="Instagram" style="width:26px;height:26px;vertical-align:middle;">
-    </a>
+                </a>
             
                 <a href="https://www.facebook.com/bwdaly.fath" title="Facebook" target="_blank">
                     <img src="https://www.svgrepo.com/show/452196/facebook-1.svg" alt="Facebook" style="width:26px;height:26px;vertical-align:middle;">
@@ -744,22 +1709,26 @@
             <p>&copy; 2025 SecPulse. All rights reserved.</p>
         </div>
     </footer>
-    <div class="security-badge">
-        Secure Connection
-    </div>
     
     <script>
-        
-        document.addEventListener('dragover', e => e.preventDefault());
-        document.addEventListener('drop', e => e.preventDefault());
-        document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I')) e.preventDefault();
+        // إبقاء حماية روابط خارجية فقط
+        document.addEventListener('DOMContentLoaded', function() {
+        // روابط خارجية آمنة
+        document.querySelectorAll('a[target="_blank"]').forEach(link => {
+            link.setAttribute('rel', 'noopener noreferrer');
         });
-        window.eval = function() { throw new Error("eval is disabled for security reasons."); };
-        window.Function = function() { throw new Error("Function constructor is disabled for security reasons."); };
 
-        
+        Navigation.init();
+
+
+        // منع لصق الإيميل فقط (اختياري)
+        const email = document.getElementById('email');
+        if(email) {
+            email.addEventListener('paste', e => e.preventDefault());
+        }
+    });
+
+
         function sanitizeInput(input) {
             return input.replace(/[<>]/g, '');
         }
@@ -777,8 +1746,14 @@
                         e.preventDefault();
                         const page = e.target.getAttribute('data-page');
                         this.setActivePage(page);
+
                         const navUl = document.querySelector('nav ul');
+                        const mobileMenu = document.querySelector('.mobile-menu');
                         if(navUl) navUl.classList.remove('active');
+                        if(mobileMenu) {
+                            mobileMenu.classList.remove('active');
+                            mobileMenu.textContent = '☰';
+                        }
                     }
                 });
                 const mobileMenu = document.querySelector('.mobile-menu');
@@ -786,6 +1761,8 @@
                 if (mobileMenu && navUl) {
                     mobileMenu.addEventListener('click', () => {
                         navUl.classList.toggle('active');
+                        mobileMenu.classList.toggle('active');
+                        mobileMenu.textContent = navUl.classList.contains('active') ? '✖' : '☰';
                     });
                 }
             },
@@ -812,7 +1789,7 @@
 
        
         document.addEventListener('DOMContentLoaded', function() {
-            Navigation.init();
+            
 
             
             const email = document.getElementById('email');
@@ -826,5 +1803,70 @@
             });
         });
     </script>
+            <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var form = document.getElementById('discountForm');
+                var thanks = document.getElementById('fiverrThanks');
+                if(form && thanks) {
+                    form.addEventListener('submit', function(e) {
+                        setTimeout(function() {
+                            form.style.display = 'none';
+                            thanks.style.display = 'block';
+                        }, 500);
+                    });
+                }
+            });
+            </script>
+            <script>
+            // filepath: c:\Users\ACER\Documents\index1.html
+            document.addEventListener('DOMContentLoaded', function() {
+                // البحث في صفحة التعلم
+                const searchInput = document.getElementById('learn-search');
+                const filterSelect = document.getElementById('learn-filter');
+                const cards = document.querySelectorAll('#learn .tools-grid .tool-card');
+
+                function filterLearn() {
+                    const search = searchInput.value.trim().toLowerCase();
+                    const level = filterSelect.value;
+                    cards.forEach(card => {
+                        const text = card.textContent.toLowerCase();
+                        const cardLevel = card.getAttribute('data-level') || '';
+                        const matchSearch = search === '' || text.includes(search);
+                        const matchLevel = !level || (cardLevel && cardLevel.includes(level));
+                        card.style.display = (matchSearch && matchLevel) ? '' : 'none';
+                    });
+                }
+
+                if (searchInput && filterSelect) {
+                searchInput.addEventListener('input', filterLearn);
+                filterSelect.addEventListener('change', filterLearn);
+                // دعم الضغط على Enter
+                searchInput.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter') {
+                    e.preventDefault();
+                    filterLearn();
+                }
+            });
+        }
+    });
+            </script>         
+            </script>
+            <!-- هنا تضع الزر -->
+            <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const backToTop = document.getElementById('backToTop');
+                window.addEventListener('scroll', function() {
+                    if (window.scrollY > 200) {
+                        backToTop.style.display = 'block';
+                    } else {
+                        backToTop.style.display = 'none';
+                    }
+                });
+                backToTop.addEventListener('click', function() {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            });
+            </script>
+    <button id="backToTop" title="Back to Top" aria-label="Back to Top">↑</button>
 </body>
 </html>
